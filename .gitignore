@@ -6,3 +6,82 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+
+# Created by https://www.gitignore.io
+
+dependencies.txt
+
+##Compiled Jsps
+WEB-INF/work/
+
+###Database.properties
+/WEB-INF/classes/*.properties
+
+/test-output/
+/test-output/**
+
+*.orig
+*.log
+*.zip
+
+## Project File
+.project
+.classpath
+myMatrixx-Cucumber.iml
+
+
+### Intellij ###
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
+
+*.iml
+
+## Directory-based project format:
+.idea/
+.idea/**
+
+target/
+target/**
+
+cypress/downloads
+
+cypress/screenshots/
+cypress/screenshots/**
+
+cypress/videos/
+cypress/videos/**
+
+node_modules/
+node_modules/**
+
+out/
+out/**
+
+reports/
+reports/**
+
+json-logs/
+json-logs/**
+
+cucumber-json/
+cucumber-json/**
+
+cucumber-report/
+cucumber-report/**
+
+runner-results/
+runner-results/**
+
+### We dont want the classfiles creaded when building the project
+*.class
+/META-INF/
+/classes/
+/build
+*.DS_Store
+
+override.properties
+yarn.lock
+cucumber-messages.ndjson
+cucumber-report.html
+
+
