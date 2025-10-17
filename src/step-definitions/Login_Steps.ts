@@ -18,7 +18,7 @@ When('I enter a valid username {string} and password {string}', async () => {
     await loginPage.enterPassword('valid_password');
 });
 
-And('I click the login button', async () => {   
+And('I click on the login button', async () => {   
     await loginPage.clickLoginButton();
 });
 
