@@ -1,11 +1,10 @@
 import { defineStep as And, Given, When, Then} from '@cucumber/cucumber';
-import { Browser } from 'playwright';
-import { Page } from 'playwright';
+import { pageFixture } from './hooks/browserContextFigure';  
 import { LoginPage } from '../page-objects/LoginPage';
 
-let browser: Browser;
-let contexts: any;
-let page: Page; 
+// let browser: Browser;
+// let contexts: any;
+// let page: Page; 
 
 const loginPage = new LoginPage();
 

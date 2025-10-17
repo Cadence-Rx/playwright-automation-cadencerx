@@ -1,4 +1,5 @@
 import {expect, type Locator, type Page} from '@playwright/test';
+import { pageFixture } from '../step-definitions/hooks/browserContextFigure';    
 
 export class LoginPage {
     readonly page: Page;

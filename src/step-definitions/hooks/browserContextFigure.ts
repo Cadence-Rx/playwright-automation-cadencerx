@@ -1,6 +1,6 @@
 import { BrowserContext, Page } from '@playwright/test';
 
-export const pageFixure = {
+export const pageFixture = {
     //@ts-ignore
     page: undefined as Page,
 
