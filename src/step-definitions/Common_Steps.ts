@@ -7,10 +7,10 @@ When('I switch to the new browser tab', async () => {
     //retrieve all open pages (tabs) in the browser context
     const allPage = await pageFixture.context.pages();
 
-    //assign the most recent tab to pageFixtre.page
+    //assign the most recent tab to pageFixture.page
     pageFixture.page = allPage[allPage.length - 1];
 
-    //Bring the newly assinged tabv to the front and make it active
+    //Bring the newly assigned tab to the front and make it active
     await pageFixture.page.bringToFront();
 
     //ensure the newly assigned tab is fully maximized
