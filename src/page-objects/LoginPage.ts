@@ -1,5 +1,5 @@
 import {expect, type Locator, type Page} from '@playwright/test';
-import { pageFixture } from '../step-definitions/hooks/browserContextFigure';    
+// import { pageFixture } from '../step-definitions/hooks/browserContextFigure';    
 
 export class LoginPage {
     readonly page: Page;
@@ -43,8 +43,8 @@ export class LoginPage {
     }   
 
     async verifyLoginSuccess() {
-        await expect(this.loginErrorMessage, 'should see error message!').toHaveCount(0);
-        await expect(this.loginErrorMessage, 'should NOT see error message!').toBeHidden();
+        expect(this.loginErrorMessage, 'should see error message!').toHaveCount(0);
+        expect(this.loginErrorMessage, 'should NOT see error message!').toBeHidden();
     }
 
 
