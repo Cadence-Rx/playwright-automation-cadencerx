@@ -1,4 +1,4 @@
-import { After, AfterAll, Before, BeforeAll } from "@cucumber/cucumber";
+import { After, AfterAll, Before, BeforeAll, Status } from "@cucumber/cucumber";
 import { Browser, chromium, Page} from "@playwright/test";
 import { pageFixture } from "./browserContextFigure";
 
@@ -23,7 +23,20 @@ Before(async function() {
 }); 
 
 // After hook to run after each scenario
-After(async function() {
+After(async function({pickle, result}) {
+     if(result?.status === Status.FAILED) {
+        if(pageFixture.page) {
+            const screenshotPath = `./reports/screenshots/${pickle.name}-${Date.now()}.png`;
+            const image = await pageFixture.page.screenshot({
+                path : screenshotPath,
+                type : 'png',
+                // timeout : 60000
+            });
+            await this.attach(image, 'image/png');
+        } else {
+            console.error("pageFixture.page is undefined");
+        }
+    }   
     await pageFixture.page.close();
     await browser.close();
 }); 

@@ -10,10 +10,14 @@
     "@faker-js/faker": "^10.1.0",
     "@playwright/test": "^1.56.0",
     "@types/node": "^24.7.2",
+    "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "cucumberTest": "cucumber-js src/features/**/*.feature --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeouts.ts"
+    "cucumberTest": "cucumber-js src/features/**/*.feature --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeouts.ts",
+    "loginTest": "cucumber-js src/features/*.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts --require src/utils/cucumber-timeout.ts --tags @login",
+    "precucumber": "rimraf reports && mkdir reports",
+    "cucumber": "npx cucumber-js && ts-node ./src/index.ts"
   }
 }
