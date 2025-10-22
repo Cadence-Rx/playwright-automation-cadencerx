@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 dotenv.config({ path: './env/.env'});
 
 //Setting retry value from envionment variable or default to 0
+const parallelValue = process.env.PARALLEL_TESTS || '1';
 const retryValue = process.env.RETRY_ATTEMPTS || '0';
 
 //Define a common command string for running cucumber tests
@@ -13,6 +14,7 @@ const common = `./src/features/*.feature \
   --require ./src/utils/cucumber-timeout.ts \
   -f json:./reports/report.json \
   --format html:./reports/report.html \
+  --parallel ${parallelValue} \
   --retry ${retryValue} \
   --tags "not @ignore" `;
 
