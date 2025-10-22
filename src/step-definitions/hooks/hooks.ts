@@ -1,8 +1,48 @@
 import { After, AfterAll, Before, BeforeAll, Status } from "@cucumber/cucumber";
-import { Browser, chromium, Page} from "@playwright/test";
+import { Browser, chromium, BrowserType, firefox, webkit} from "@playwright/test";
 import { pageFixture } from "./browserContextFigure";
 
-let browser: Browser; //represents the browser instance e.g. Chromium, Firefox, Chrome opend by Playwright
+//Load env variables from .env file
+import { config as loadEnv} from "dotenv";
+const env = loadEnv({path: './.env/.env'});
+
+//Create a configuration object for easy access to env variables
+const config = {
+    headless: env.parsed?.HEADLESS === 'true',
+    browser: env.parsed?.BROWSER || 'chromium',
+    width: parseInt(env.parsed?.WIDTH || '1920'),
+    height: parseInt(env.parsed?.HEIGHT || '1080'), 
+};
+
+//Create dictionary mapping browser names to their launch functions
+const browsers: { [key: string]: BrowserType } = {
+    'chromium': chromium,
+    'firefox': firefox,
+    'webkit': webkit,
+};
+
+let browserInstance: Browser | null = null; //represents the browser instance e.g. Chromium, Firefox, Chrome opend by Playwright
+
+async function initializeBrowserContext(selectedBrowser: string): Promise<Browser> {
+    const launchBrowser = browsers[selectedBrowser];
+    if (!launchBrowser) {
+        throw new Error(`Invalid browser selected: ${selectedBrowser}`);
+    }
+
+    return await launchBrowser.launch({ headless: config.headless });
+};
+
+async function initializedPage(): Promise<void> {
+    if (!browserInstance) {
+        throw new Error("Browser instance is null!");
+    }
+    pageFixture.context = await browserInstance.newContext({
+        ignoreHTTPSErrors: true,
+     });
+    pageFixture.page = await pageFixture.context.newPage();
+    await pageFixture.page.setViewportSize({ width: config.width, height: config.height });
+    
+}
 
 // Before all hook to run once before all scenarios
 BeforeAll(async function() {    
@@ -17,9 +57,13 @@ AfterAll(async function() {
 // Before hook to run before each scenario
 Before(async function() {
     //setup browser instance
-    browser = await chromium.launch({ headless: false });
-    pageFixture.context = await browser.newContext({viewport: { width: 1920, height: 1080 }});
-    pageFixture.page = await pageFixture.context.newPage();
+    try {
+        browserInstance = await initializeBrowserContext(config.browser);
+        console.log(`Browser context initialized for ${config.browser}`);
+        await initializedPage();
+    } catch (error) {
+        console.error('Browser context initialization failed:', error);
+    }
 }); 
 
 // After hook to run after each scenario
@@ -36,7 +80,9 @@ After(async function({pickle, result}) {
         } else {
             console.error("pageFixture.page is undefined");
         }
-    }   
-    await pageFixture.page.close();
-    await browser.close();
+    } 
+    if(browserInstance)  {
+        await pageFixture.page?.close();
+        await browserInstance.close();
+    }
 }); 
