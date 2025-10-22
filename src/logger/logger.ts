@@ -1,18 +1,22 @@
 import * as winston from 'winston';
 import colors from '@colors/colors'; 
 
+import dotenv from 'dotenv';
+dotenv.config({ path: './env/.env'});
+
 //Define the custom format
 const myFormat = winston.format.printf(({ level, message, timestamp }) => {
-    let colorizedMessage = message;
+    const msgStr = typeof message === 'string' ? message : String(message);
+    let colorizedMessage = msgStr;
     switch(level) {
         case 'error':
-            colorizedMessage = colors.red(message); 
+            colorizedMessage = colors.red(msgStr); 
             break; 
         case 'warn':
-            colorizedMessage = colors.yellow(message); 
+            colorizedMessage = colors.yellow(msgStr); 
             break;  
         case 'info':
-            colorizedMessage = colors.green(message); 
+            colorizedMessage = colors.green(msgStr); 
             break;  
     }
     return `${timestamp} [${level.toUpperCase()}]: ${colorizedMessage}`;
