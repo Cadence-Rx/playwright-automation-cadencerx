@@ -1,5 +1,5 @@
 import { When, Given } from '@cucumber/cucumber';
-import { pageFixture } from './hooks/browserContextFigure';
+import { pageFixture } from './hooks/browserContextFixture';
 
 //Load env variables from .env file
 import {config as loadEnv} from "dotenv";

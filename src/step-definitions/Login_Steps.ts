@@ -1,5 +1,5 @@
 import { defineStep as And, Given, When, Then} from '@cucumber/cucumber';
-import { pageFixture } from './hooks/browserContextFigure';  
+import { pageFixture } from './hooks/browserContextFixture';  
 import { LoginPage } from '../page-objects/LoginPage';
 
 const loginPage = new LoginPage(pageFixture.page);
