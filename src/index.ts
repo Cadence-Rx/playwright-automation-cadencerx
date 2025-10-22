@@ -1,4 +1,10 @@
 import { exec } from "child_process";
+//Load env variables from .env file
+import dotenv from "dotenv";
+dotenv.config({ path: './env/.env'});
+
+//Setting retry value from envionment variable or default to 0
+const retryValue = process.env.RETRY_ATTEMPTS || '0';
 
 //Define a common command string for running cucumber tests
 const common = `./src/features/*.feature \
@@ -7,6 +13,7 @@ const common = `./src/features/*.feature \
   --require ./src/utils/cucumber-timeout.ts \
   -f json:./reports/report.json \
   --format html:./reports/report.html \
+  --retry ${retryValue} \
   --tags "not @ignore" `;
 
 //Define an interface for the profiles object
