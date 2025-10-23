@@ -2,6 +2,7 @@ import { Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { pageFixture } from "../../step-definitions/hooks/browserContextFixture";
 import { LoginPage } from "../LoginPage";
+import { AuthorizationTabOpusDashboardPage } from "../AuthorizationTabOpusDashboardPage";
 
 export class PageManager {
   get page(): Page {
@@ -15,5 +16,10 @@ export class PageManager {
   createLoginPage() {
     return new LoginPage(this.page);
   }
+
+  createAuthorizationTabOpusDashboardPage() {
+    return new AuthorizationTabOpusDashboardPage(this.page);
+  }
+
 
 }

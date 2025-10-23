@@ -7,7 +7,7 @@ Feature: Opus Login Functionality
     Scenario Outline: User should be able to login with valid credentials
         When I enter a valid username '<username>' and password '<password>'
         And I click on the login button
-        Then I should be logged in successfully
+        Then I should be successfully logged in and navigated to the Authorization tab of the OPUS Dashboard
 
         Examples:
             | username                    | password  |

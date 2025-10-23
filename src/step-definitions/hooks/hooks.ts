@@ -68,6 +68,8 @@ Before(async function() {
         this.pageManager = new PageManager();
         this.basePage = this.pageManager.createBasePage();
         this.homePage = this.pageManager.createHomePage(); 
+        this.loginPage = this.pageManager.createLoginPage();
+        this.authorizationTabOpusDashboardPage = this.pageManager.createAuthorizationTabOpusDashboardPage();    
     } catch (error) {
         console.error('Browser context initialization failed:', error);
     }
