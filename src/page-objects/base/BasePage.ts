@@ -20,6 +20,12 @@ export class BasePage {
         await locator.isVisible();
         await locator.click();
     }
+
+      public async waitAndClickByLocator(locator: string): Promise<void> {
+        const element = this.page.locator(locator) 
+        await element.isVisible();
+        await element.click();
+    }
     
     public async waitAndClickSelector(selector: string): Promise<void> {
         await this.page.waitForSelector(selector);
