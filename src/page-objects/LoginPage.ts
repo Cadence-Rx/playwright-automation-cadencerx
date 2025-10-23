@@ -2,7 +2,6 @@ import {expect, type Locator, type Page} from '@playwright/test';
 import { BasePage } from './base/BasePage';
 
 export class LoginPage extends BasePage {
-    // readonly page: Page;
     readonly usernameInput: Locator;
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
