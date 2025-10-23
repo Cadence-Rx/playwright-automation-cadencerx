@@ -5,6 +5,7 @@ export class LoginPage extends BasePage {
     readonly usernameInput: Locator;
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
+    readonly myAuthorizationBtn: Locator;
     readonly loginErrorMessage: Locator;
 
     constructor(page: Page) {
@@ -12,6 +13,7 @@ export class LoginPage extends BasePage {
         this.usernameInput = page.locator("input#Email");
         this.passwordInput = page.locator("input#Password");
         this.loginButton = page.locator("input#loginButton");
+        this.myAuthorizationBtn = page.locator("a.btn.btn-primary.btn-sm.authRefreshButton.authRefreshButtonMy");
         this.loginErrorMessage = page.locator("div.text-danger.validation-summary-errorss");
     }
 
@@ -40,12 +42,16 @@ export class LoginPage extends BasePage {
     }   
 
     public async clickLoginButton(): Promise<void> {
+        // await this.page.pause();
         await this.loginButton.click();
     }   
 
     public async verifyLoginSuccess(): Promise<void> {
-        expect(this.loginErrorMessage, 'should see error message!').toHaveCount(0);
-        expect(this.loginErrorMessage, 'should NOT see error message!').toBeHidden();
+        await this.page.pause();
+        expect(this.myAuthorizationBtn, 'should see My Authorization button!').toBeVisible();
+
+        // expect(this.loginErrorMessage, 'should see error message!').toHaveCount(0);
+        // expect(this.loginErrorMessage, 'should NOT see error message!').toBeHidden();
     }
 
 
