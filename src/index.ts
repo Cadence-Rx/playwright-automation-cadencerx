@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config({ path: './env/.env'});
 
 //Setting retry value from envionment variable or default to 0
-const parallelValue = process.env.PARALLEL_TESTS || '1';
+const parallelValue = process.env.PARALLEL_NUMBER || '1';
 const retryValue = process.env.RETRY_ATTEMPTS || '0';
 
 //Define a common command string for running cucumber tests
@@ -13,7 +13,7 @@ const common = `./src/features/*.feature \
   --require ./src/step-definitions/**/**/*.ts \
   --require ./src/utils/cucumber-timeout.ts \
   -f json:./reports/report.json \
-  --format html:./reports/report.html \
+  --format html:./reports/cucumber-html/report.html \
   --parallel ${parallelValue} \
   --retry ${retryValue} \
   --tags "not @ignore" `;
@@ -48,9 +48,9 @@ exec(command, { encoding: 'utf-8'}, (error: Error | null, stdout: string) =>{
   //Log the output of the command
   console.log(stdout);
 
-  //check if there was an error during execution
-  if(error) {
-    //throw a new error with a simple message
-    throw new Error('⚠️ 💥 Some automation test(s) have failed! - Please review. ⚠️ 💥')
-  }
+//check if there was an error during execution
+if(error) {
+  //throw a new error with a simple message
+  throw new Error('⚠️ 💥 Some automation test(s) have failed! - Please review. ⚠️ 💥\n' + error)
+}
 });
