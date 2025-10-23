@@ -1,6 +1,7 @@
 import { Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { pageFixture } from "../../step-definitions/hooks/browserContextFixture";
+import { LoginPage } from "../LoginPage";
 
 export class PageManager {
   get page(): Page {
@@ -10,4 +11,9 @@ export class PageManager {
   createBasePage(): BasePage {
     return new BasePage();
   }
+
+  createLoginPage() {
+    return new LoginPage(this.page);
+  }
+
 }

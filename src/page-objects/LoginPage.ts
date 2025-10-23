@@ -1,30 +1,32 @@
 import {expect, type Locator, type Page} from '@playwright/test';
-import { pageFixture } from '../step-definitions/hooks/browserContextFixture';    
+import { BasePage } from './base/BasePage';
 
-export class LoginPage {
-    readonly page: Page;
+export class LoginPage extends BasePage {
+    // readonly page: Page;
     readonly usernameInput: Locator;
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
     readonly loginErrorMessage: Locator;
 
     constructor(page: Page) {
-        this.page = page;
+        super();
         this.usernameInput = page.locator("input#Email");
         this.passwordInput = page.locator("input#Password");
         this.loginButton = page.locator("input#loginButton");
         this.loginErrorMessage = page.locator("div.text-danger.validation-summary-errorss");
     }
 
-    async navigateToOpusLoginPage(): Promise<void> {
-        await this.page.goto('https://opus-uat.cadencerx.com/');
+
+    public async navigateToOpusLoginPage(): Promise<void> {
+        await this.navigateToURL('https://opus-uat.cadencerx.com/');
     }
 
-    async enterUsername(username: string): Promise<void> {
+    public async enterUsername(username: string): Promise<void> {
+        // await this.waitAndClick(this.usernameInput);
         await this.usernameInput.fill(username);
     }
 
-    async enterPassword(password: string) {
+    public async enterPassword(password: string): Promise<void> {
         let today: Date = new Date();
         // let dateString: string = today.getDate().toString().padStart(2, '0');
         let dateString: string = today.toDateString();
@@ -38,11 +40,11 @@ export class LoginPage {
         await this.passwordInput.fill(dynamicPassword);
     }   
 
-    async clickLoginButton(): Promise<void> {
+    public async clickLoginButton(): Promise<void> {
         await this.loginButton.click();
     }   
 
-    async verifyLoginSuccess() {
+    public async verifyLoginSuccess(): Promise<void> {
         expect(this.loginErrorMessage, 'should see error message!').toHaveCount(0);
         expect(this.loginErrorMessage, 'should NOT see error message!').toBeHidden();
     }
