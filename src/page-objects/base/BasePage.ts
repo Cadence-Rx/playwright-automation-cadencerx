@@ -32,8 +32,8 @@ export class BasePage {
     }
 
       public async waitAndClickByLocator(locator: string): Promise<void> {
-        const element = this.page.locator(locator) 
-        await element.isVisible();
+        const element = this.page.locator(locator);
+        await element.waitFor({ state: 'visible', timeout: 30000 });
         await element.click();
     }
     

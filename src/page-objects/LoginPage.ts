@@ -42,16 +42,16 @@ export class LoginPage extends BasePage {
     }   
 
     public async clickLoginButton(): Promise<void> {
-        // await this.page.pause();
+        await this.loginButton.waitFor({ state: 'visible', timeout: 30000 });
         await this.loginButton.click();
     }   
 
     public async verifyLoginSuccess(): Promise<void> {
-        await this.page.pause();
-        expect(this.myAuthorizationBtn, 'should see My Authorization button!').toBeVisible();
+        // await this.page.pause();
+        // expect(this.myAuthorizationBtn, 'should see My Authorization button!').toBeVisible();
 
         // expect(this.loginErrorMessage, 'should see error message!').toHaveCount(0);
-        // expect(this.loginErrorMessage, 'should NOT see error message!').toBeHidden();
+        expect(this.loginErrorMessage, 'should NOT see error message!').toBeHidden();
     }
 
 

@@ -11,7 +11,7 @@ const retryValue = process.env.RETRY_ATTEMPTS || '0';
 const common = `./src/features/*.feature \
   --require-module ts-node/register \
   --require ./src/step-definitions/**/**/*.ts \
-  --require ./src/utils/cucumber-timeout.ts \
+  --require ./src/utils/cucumber-timeouts.ts \
   -f json:./reports/report.json \
   --format html:./reports/cucumber-html/report.html \
   --parallel ${parallelValue} \
