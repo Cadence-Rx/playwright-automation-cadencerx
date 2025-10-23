@@ -10,7 +10,8 @@ export class AuthorizationTabOpusDashboardPage extends BasePage {
     }
 
     public async verifyAuthorizationTab(): Promise<void> {
-        expect(this.authorizationTab, 'Authorization tab is visible!').toBeVisible();
+        await expect(this.authorizationTab, 'My Authorization button is visible!').toBeVisible();
+        // expect(this.authorizationTab, 'Authorization tab is visible!').toBeVisible();
     }
 
 

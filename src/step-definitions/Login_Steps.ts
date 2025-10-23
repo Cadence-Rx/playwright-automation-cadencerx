@@ -20,6 +20,6 @@ And('I click on the login button', async function (this: CucumberWorld) {
 });
 
 
-Then('I should be logged in successfully', async () => {
-    await getLoginPage().verifyLoginSuccess();
-}); 
+// Then('I should be logged in successfully', async () => {
+//     await getLoginPage().verifyLoginSuccess();
+// }); 

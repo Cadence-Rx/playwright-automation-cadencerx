@@ -5,7 +5,7 @@ export class LoginPage extends BasePage {
     readonly usernameInput: Locator;
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
-    readonly myAuthorizationBtn: Locator;
+    readonly authorizationTab: Locator;
     readonly loginErrorMessage: Locator;
 
     constructor(page: Page) {
@@ -13,7 +13,7 @@ export class LoginPage extends BasePage {
         this.usernameInput = page.locator("input#Email");
         this.passwordInput = page.locator("input#Password");
         this.loginButton = page.locator("input#loginButton");
-        this.myAuthorizationBtn = page.locator("a.btn.btn-primary.btn-sm.authRefreshButton.authRefreshButtonMy");
+        this.authorizationTab = page.locator("a.btn.btn-primary.btn-sm.authRefreshButton.authRefreshButtonMy");
         this.loginErrorMessage = page.locator("div.text-danger.validation-summary-errors");
     }
 
@@ -51,7 +51,7 @@ export class LoginPage extends BasePage {
     }   
 
     public async verifyLoginSuccess(): Promise<void> {
-        await expect(this.myAuthorizationBtn, 'My Authorization button is visible!').toBeVisible();
+        await expect(this.authorizationTab, 'My Authorization button is visible!').toBeVisible();
         await expect(this.loginErrorMessage, 'should NOT see error message!').toHaveCount(0);
 
         // Alternative: Use .not.toBeVisible() instead of .toBeHidden() for non-existent elements
