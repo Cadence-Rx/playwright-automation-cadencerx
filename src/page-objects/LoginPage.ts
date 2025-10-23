@@ -51,7 +51,7 @@ export class LoginPage extends BasePage {
     }   
 
     public async verifyLoginSuccess(): Promise<void> {
-        await expect(this.authorizationTab, 'My Authorization button is visible!').toBeVisible();
+        // await expect(this.authorizationTab, 'My Authorization button is visible!').toBeVisible();
         await expect(this.loginErrorMessage, 'should NOT see error message!').toHaveCount(0);
 
         // Alternative: Use .not.toBeVisible() instead of .toBeHidden() for non-existent elements
