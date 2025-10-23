@@ -21,6 +21,10 @@ export class LoginPage extends BasePage {
     public async navigateToOpusLoginPage(): Promise<void> {
         await this.navigateToURL('https://opus-uat.cadencerx.com/');
     }
+    
+    public async navigateToHestiaCommandCenter(): Promise<void> {
+        await this.navigateToURL('https://hestia-uat.azurewebsites.net/Administration/CommandCenter');
+    }
 
     public async enterUsername(username: string): Promise<void> {
         // await this.waitAndClick(this.usernameInput);
@@ -47,40 +51,10 @@ export class LoginPage extends BasePage {
     }   
 
     public async verifyLoginSuccess(): Promise<void> {
-        // await this.page.pause();
-        // Verify successful login by checking for the authorization button
-        // await expect(this.myAuthorizationBtn, 'should see My Authorization button!').toBeVisible();
-
-        // Check that error message is either not present or hidden
+        await expect(this.myAuthorizationBtn, 'My Authorization button is visible!').toBeVisible();
         await expect(this.loginErrorMessage, 'should NOT see error message!').toHaveCount(0);
+
         // Alternative: Use .not.toBeVisible() instead of .toBeHidden() for non-existent elements
-        // await expect(this.loginErrorMessage, 'should NOT see error message!').not.toBeVisible();
+        await expect(this.loginErrorMessage, 'should NOT see error message!').not.toBeVisible();
     }
-
-
-    // get usernameInput(): Locator {
-    //     return this.page.locator('input[name="username"]');
-    // }
-
-    // get passwordInput(): Locator {
-    //     return this.page.locator('input[name="password"]');
-    // }
-
-    // get loginButton(): Locator {
-    //     return this.page.locator('button[type="submit"]');
-    // }
-
-    // async login(username: string, password: string): Promise<void> {
-    //     await this.usernameInput.fill(username);
-    //     await this.passwordInput.fill(password);
-    //     await this.loginButton.click();
-    // }
-
-    // async assertLoginSuccess(): Promise<void> {
-    //     await expect(this.page.locator('text=Welcome')).toBeVisible();
-    // }
-
-    // async assertLoginFailure(): Promise<void> {
-    //     await expect(this.page.locator('text=Invalid credentials')).toBeVisible();
-    // }
 }
