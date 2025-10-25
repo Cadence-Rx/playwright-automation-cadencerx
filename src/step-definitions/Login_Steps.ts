@@ -16,10 +16,7 @@ When('I enter a valid username {string} and password {string}', async (email: st
 });
 
 And('I click on the login button', async function (this: CucumberWorld) {   
-    await getLoginPage().clickLoginButton();
+    await this.loginPage.clickLoginButton();
+    // await getLoginPage().clickLoginButton();
 });
 
-
-// Then('I should be logged in successfully', async () => {
-//     await getLoginPage().verifyLoginSuccess();
-// }); 

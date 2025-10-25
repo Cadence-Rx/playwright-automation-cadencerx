@@ -5,7 +5,7 @@ export class LoginPage extends BasePage {
     readonly usernameInput: Locator;
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
-    readonly authorizationTab: Locator;
+    // readonly authorizationTab: Locator;
     readonly loginErrorMessage: Locator;
 
     constructor(page: Page) {
@@ -13,7 +13,7 @@ export class LoginPage extends BasePage {
         this.usernameInput = page.locator("input#Email");
         this.passwordInput = page.locator("input#Password");
         this.loginButton = page.locator("input#loginButton");
-        this.authorizationTab = page.locator("a.btn.btn-primary.btn-sm.authRefreshButton.authRefreshButtonMy");
+        // this.authorizationTab = page.locator("a.btn.btn-primary.btn-sm.authRefreshButton.authRefreshButtonMy");
         this.loginErrorMessage = page.locator("div.text-danger.validation-summary-errors");
     }
 
