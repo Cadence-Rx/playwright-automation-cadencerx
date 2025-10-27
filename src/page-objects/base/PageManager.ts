@@ -27,5 +27,4 @@ export class PageManager {
     return new ForgotPasswordPage(this.page);
   }
 
-
 }
