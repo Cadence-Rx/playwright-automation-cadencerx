@@ -33,6 +33,5 @@ When('I enter an invalid username or password', async () => {
 });
 
 Then('I should see an error message indicating invalid credentials', async () => {
-    
     await getLoginPage().verifyInvalidLoginErrorMessage();
 }); 
