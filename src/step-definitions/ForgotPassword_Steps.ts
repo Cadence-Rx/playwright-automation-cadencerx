@@ -1,6 +1,5 @@
 import { defineStep as And, Given, When, Then} from '@cucumber/cucumber';
 import { pageFixture } from './hooks/browserContextFixture';  
-// import forgotPasswordPage from '../page-objects/ForgotPasswordPage';
 import { faker } from '@faker-js/faker';
 import { ForgotPasswordPage } from '../page-objects/ForgotPasswordPage';
 

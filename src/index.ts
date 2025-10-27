@@ -13,7 +13,7 @@ const common = `./src/features/*.feature \
   --require ./src/step-definitions/**/**/*.ts \
   --require ./src/utils/cucumber-timeouts.ts \
   -f json:./reports/report.json \
-  --format html:./reports/cucumber-html/report.html \
+  --format html:./reports/cucumber-html/playwright-report.html \
   --parallel ${parallelValue} \
   --retry ${retryValue} \
   --tags "not @ignore" `;
