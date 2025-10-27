@@ -3,6 +3,7 @@ import { PageManager } from "../../page-objects/base/PageManager";
 import { BasePage } from "../../page-objects/base/BasePage";
 import { LoginPage } from "../../page-objects/LoginPage";
 import { AuthorizationTabOpusDashboardPage } from "../../page-objects/AuthorizationTabOpusDashboardPage";
+import { ForgotPasswordPage } from "../../page-objects/ForgotPasswordPage";
 
 export class CucumberWorld extends World {
   public pageManager: PageManager;
@@ -22,6 +23,10 @@ export class CucumberWorld extends World {
 
   get authorizationTabOpusDashboardPage(): AuthorizationTabOpusDashboardPage {
     return this.pageManager.createAuthorizationTabOpusDashboardPage();
+  }
+
+  get forgotPasswordPage(): ForgotPasswordPage {
+    return this.pageManager.createForgotPasswordPage();
   }
 
   //Base URL
