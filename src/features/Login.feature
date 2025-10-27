@@ -4,6 +4,7 @@ Feature: Opus Login Functionality
     Background:
         Given I navigate to the Opus application
 
+    @smoke
     Scenario Outline: User should be able to login with valid credentials
         When I enter a valid username '<username>' and password '<password>'
         And I click on the login button
@@ -21,13 +22,11 @@ Feature: Opus Login Functionality
         And I should be able to enter in my email address to reset password
 
 
-
-
-#   @invalidLogin
-#   Scenario: User should not be able to login with invalid credentials
-#     When I enter an invalid username or password
-#     And I click on the login button
-#     Then I should see an error message indicating invalid credentials
+    
+    Scenario: User should not be able to login with invalid credentials
+        When I enter an invalid username or password
+        And I click on the login button
+        Then I should see an error message indicating invalid credentials
 
 #   @emptyFields
 #   Scenario: User should not be able to login with empty fields

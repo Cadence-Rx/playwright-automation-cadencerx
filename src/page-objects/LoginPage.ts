@@ -62,4 +62,14 @@ export class LoginPage extends BasePage {
         await this.forgotPasswordLink.waitFor({ state: 'visible', timeout: 30000 });
         await this.forgotPasswordLink.click();
     }
+
+    public async enterInvalidUsernameOrPassword(invalidEmail: string): Promise<void> {
+        await this.usernameInput.fill(invalidEmail); 
+        await this.passwordInput.fill('wrongPassword123');
+    }
+
+    public async verifyInvalidLoginErrorMessage(): Promise<void> {
+        await expect(this.loginErrorMessage, 'Error message is visible!').toBeVisible();
+        await expect(this.loginErrorMessage).toHaveText('Invalid login attempt.');
+    }
 }
