@@ -5,16 +5,16 @@ export class LoginPage extends BasePage {
     readonly usernameInput: Locator;
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
-    // readonly authorizationTab: Locator;
     readonly loginErrorMessage: Locator;
+    readonly forgotPasswordLink: Locator;
 
     constructor(page: Page) {
         super();
         this.usernameInput = page.locator("input#Email");
         this.passwordInput = page.locator("input#Password");
         this.loginButton = page.locator("input#loginButton");
-        // this.authorizationTab = page.locator("a.btn.btn-primary.btn-sm.authRefreshButton.authRefreshButtonMy");
         this.loginErrorMessage = page.locator("div.text-danger.validation-summary-errors");
+        this.forgotPasswordLink = page.locator("a[href='/Account/ForgotPassword']");
     }
 
 
@@ -56,5 +56,10 @@ export class LoginPage extends BasePage {
 
         // Alternative: Use .not.toBeVisible() instead of .toBeHidden() for non-existent elements
         await expect(this.loginErrorMessage, 'should NOT see error message!').not.toBeVisible();
+    }
+
+    public async clickForgotPasswordLink(): Promise<void> {
+        await this.forgotPasswordLink.waitFor({ state: 'visible', timeout: 30000 });
+        await this.forgotPasswordLink.click();
     }
 }
