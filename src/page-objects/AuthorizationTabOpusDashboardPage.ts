@@ -6,12 +6,12 @@ export class AuthorizationTabOpusDashboardPage extends BasePage {
 
     constructor(page: Page) {
         super();
-        this.authorizationTab = page.locator("a.btn.btn-primary.btn-sm.authRefreshButton.authRefreshButtonMy");
+        this.authorizationTab = page.locator("a.btn.btn-white.border.btn-sm.authRefreshButton.authRefreshButtonMy");
     }
 
     public async verifyAuthorizationTab(): Promise<void> {
         await expect(this.authorizationTab, 'My Authorization button is visible!').toBeVisible();
-        // expect(this.authorizationTab, 'Authorization tab is visible!').toBeVisible();
+        await expect(this.authorizationTab).toHaveText('My Authorizations');
     }
 
 
