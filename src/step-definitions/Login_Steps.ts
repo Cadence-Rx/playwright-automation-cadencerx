@@ -3,6 +3,7 @@ import { pageFixture } from './hooks/browserContextFixture';
 import { LoginPage } from '../page-objects/LoginPage';
 import { CucumberWorld } from './world/CucumberWorld';
 import { faker } from '@faker-js/faker';
+import { error } from 'console';
 
 // Getter function to create LoginPage instance when needed
 const getLoginPage = () => new LoginPage(pageFixture.page);
@@ -32,6 +33,6 @@ When('I enter an invalid username or password', async () => {
     await getLoginPage().enterInvalidUsernameOrPassword(testEmail);
 });
 
-Then('I should see an error message indicating invalid credentials', async () => {
-    await getLoginPage().verifyInvalidLoginErrorMessage();
+Then('I should see an error message indicating {string}', async (errorMessage: string) => {
+    await getLoginPage().verifyInvalidLoginErrorMessage(errorMessage);
 }); 

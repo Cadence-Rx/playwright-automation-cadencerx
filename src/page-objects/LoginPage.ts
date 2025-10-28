@@ -68,8 +68,8 @@ export class LoginPage extends BasePage {
         await this.passwordInput.fill('wrongPassword123');
     }
 
-    public async verifyInvalidLoginErrorMessage(): Promise<void> {
+    public async verifyInvalidLoginErrorMessage(errorMessage: string): Promise<void> {
         await expect(this.loginErrorMessage, 'Error message is visible!').toBeVisible();
-        await expect(this.loginErrorMessage).toHaveText('Invalid login attempt.');
+        await expect(this.loginErrorMessage).toHaveText(errorMessage);
     }
 }

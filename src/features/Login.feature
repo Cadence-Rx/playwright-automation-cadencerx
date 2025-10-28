@@ -22,11 +22,11 @@ Feature: Opus Login Functionality
         And I should be able to enter in my email address to reset password
 
 
-    
+
     Scenario: User should not be able to login with invalid credentials
         When I enter an invalid username or password
         And I click on the login button
-        Then I should see an error message indicating invalid credentials
+        Then I should see an error message indicating "Invalid login attempt"
 
 #   @emptyFields
 #   Scenario: User should not be able to login with empty fields
