@@ -79,19 +79,40 @@ Before(async function() {
 After(async function({pickle, result}) {
     if(result?.status === Status.FAILED) {
         if(pageFixture.page) {
-            const screenshotPath = `./reports/screenshots/${pickle.name}-${Date.now()}.png`;
-            const image = await pageFixture.page.screenshot({
-                path : screenshotPath,
-                type : 'png',
-                // timeout : 60000
-            });
-            await this.attach(image, 'image/png');
+            try {
+                // Create screenshots directory if it doesn't exist
+                const fs = require('fs');
+                const screenshotDir = './reports/screenshots';
+                if (!fs.existsSync(screenshotDir)) {
+                    fs.mkdirSync(screenshotDir, { recursive: true });
+                }
+
+                const screenshotPath = `${screenshotDir}/${pickle.name.replace(/[^a-z0-9]/gi, '_')}-${Date.now()}.png`;
+                const image = await pageFixture.page.screenshot({
+                    path: screenshotPath,
+                    type: 'png',
+                    fullPage: true // Capture full page, not just viewport
+                });
+                
+                // Attach screenshot to cucumber report
+                await this.attach(image, 'image/png');
+                console.log(`Screenshot saved: ${screenshotPath}`);
+            } catch (error) {
+                console.error('Failed to capture screenshot:', error);
+            }
         } else {
             console.error("pageFixture.page is undefined");
         }
     }   
+    
+    // Clean up browser resources
     if(browserInstance) {
-        await pageFixture.page?.close();
-        await browserInstance.close();
+        try {
+            await pageFixture.page?.close();
+            await browserInstance.close();
+            browserInstance = null;
+        } catch (error) {
+            console.error('Error closing browser:', error);
+        }
     }
 });
