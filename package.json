@@ -21,7 +21,7 @@
   "scripts": {
     "cucumberTest": "cucumber-js src/features/**/*.feature --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeouts.ts",
     "loginTest": "cucumber-js src/features/*.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts --require src/utils/cucumber-timeout.ts --tags @login",
-    "precucumber": "rimraf reports && mkdir reports",
+    "precucumber": "rimraf reports && mkdir reports && mkdir reports\\screenshots",
     "cucumber": "npx cucumber-js && ts-node ./src/index.ts"
   }
 }

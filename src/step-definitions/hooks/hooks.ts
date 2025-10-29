@@ -1,4 +1,4 @@
-import { After, AfterAll, Before, BeforeAll, Status } from "@cucumber/cucumber";
+import { After, AfterAll, Before, BeforeAll, BeforeStep, Status } from "@cucumber/cucumber";
 import {Browser, chromium, BrowserType, firefox, webkit} from "@playwright/test";
 import { pageFixture } from "./browserContextFixture";
 import { setGlobalTimeouts } from "../../utils/playwright-timeouts";
@@ -77,33 +77,39 @@ Before(async function() {
 
 // After hook: Runs after each scenario
 After(async function({pickle, result}) {
-    if(result?.status === Status.FAILED) {
-        if(pageFixture.page) {
-            try {
-                // Create screenshots directory if it doesn't exist
-                const fs = require('fs');
-                const screenshotDir = './reports/screenshots';
-                if (!fs.existsSync(screenshotDir)) {
-                    fs.mkdirSync(screenshotDir, { recursive: true });
-                }
-
-                const screenshotPath = `${screenshotDir}/${pickle.name.replace(/[^a-z0-9]/gi, '_')}-${Date.now()}.png`;
-                const image = await pageFixture.page.screenshot({
-                    path: screenshotPath,
-                    type: 'png',
-                    fullPage: true // Capture full page, not just viewport
-                });
-                
-                // Attach screenshot to cucumber report
-                await this.attach(image, 'image/png');
-                console.log(`Screenshot saved: ${screenshotPath}`);
-            } catch (error) {
-                console.error('Failed to capture screenshot:', error);
+    // Check if we should capture screenshots based on test result and environment settings
+    const shouldCaptureForFailed = result?.status === Status.FAILED && process.env.CAPTURE_SCREENSHOTS_ON_FAIL !== 'false';
+    const shouldCaptureForPassed = result?.status === Status.PASSED && process.env.CAPTURE_SCREENSHOTS_ON_PASS === 'true';
+    
+    if((shouldCaptureForFailed || shouldCaptureForPassed) && pageFixture.page) {
+        try {
+            // Create screenshots directory if it doesn't exist
+            const fs = require('fs');
+            const screenshotDir = './reports/screenshots';
+            if (!fs.existsSync(screenshotDir)) {
+                fs.mkdirSync(screenshotDir, { recursive: true });
             }
-        } else {
-            console.error("pageFixture.page is undefined");
+
+            const status = result?.status === Status.FAILED ? 'FAILED' : 'PASSED';
+            const timestamp = Date.now();
+            const scenarioName = pickle.name.replace(/[^a-z0-9]/gi, '_');
+            const screenshotPath = `${screenshotDir}/${scenarioName}-${status}-${timestamp}.png`;
+            
+            const image = await pageFixture.page.screenshot({
+                path: screenshotPath,
+                type: 'png',
+                fullPage: true // Capture full page, not just viewport
+            });
+            
+            // Attach screenshot to cucumber report
+            await this.attach(image, 'image/png');
+            console.log(`${status} screenshot saved: ${screenshotPath}`);
+        } catch (error) {
+            console.error('Failed to capture screenshot:', error);
         }
-    }   
+    } else if(!pageFixture.page && (shouldCaptureForFailed || shouldCaptureForPassed)) {
+        console.error("pageFixture.page is undefined - cannot capture screenshot");
+    }
     
     // Clean up browser resources
     if(browserInstance) {
@@ -116,3 +122,28 @@ After(async function({pickle, result}) {
         }
     }
 });
+
+// Optional: BeforeStep hook to capture screenshots before important steps
+// Uncomment and modify as needed for more detailed screenshot capture
+/*
+BeforeStep(async function({pickleStep}) {
+    if(process.env.CAPTURE_STEP_SCREENSHOTS === 'true' && pageFixture.page) {
+        try {
+            const stepName = pickleStep.text.replace(/[^a-z0-9]/gi, '_').substring(0, 50);
+            const timestamp = Date.now();
+            const screenshotPath = `./reports/screenshots/step-${stepName}-${timestamp}.png`;
+            
+            const image = await pageFixture.page.screenshot({
+                path: screenshotPath,
+                type: 'png',
+                fullPage: false // Just viewport for step screenshots
+            });
+            
+            await this.attach(image, 'image/png');
+            console.log(`Step screenshot saved: ${screenshotPath}`);
+        } catch (error) {
+            console.error('Failed to capture step screenshot:', error);
+        }
+    }
+});
+*/

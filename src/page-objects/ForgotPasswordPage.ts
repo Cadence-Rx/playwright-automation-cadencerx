@@ -17,11 +17,13 @@ export class ForgotPasswordPage extends BasePage {
     public async verifyForgotPasswordPageHeader(): Promise<void> {
         await expect(this.forgotPasswordPageHeader, 'Forgot Password page header is visible!').toBeVisible();
         await expect(this.forgotPasswordPageHeader).toHaveText('Enter your email.');
+        await this.forgotPasswordPageHeader.screenshot({ path: `reports/screenshots/ForgotPasswordPageHeader.png` });
     }
 
     public async verifyEmailInput(email: string): Promise<void> {
         await this.emailInput.fill(email);
         await expect(this.emailInput).toHaveValue(email);
+        await this.emailInput.screenshot({ path: `reports/screenshots/ForgotPasswordEmailInput.png` });
     }
 
     public async verifyEmailLinkButton(buttonValue: string): Promise<void> {
