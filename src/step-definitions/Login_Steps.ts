@@ -4,6 +4,7 @@ import { LoginPage } from '../page-objects/LoginPage';
 import { CucumberWorld } from './world/CucumberWorld';
 import { faker } from '@faker-js/faker';
 import { error } from 'console';
+import { ScreenshotUtils } from '../utils/screenshot-utils';
 
 // Getter function to create LoginPage instance when needed
 const getLoginPage = () => new LoginPage(pageFixture.page);
@@ -33,6 +34,8 @@ When('I enter an invalid username or password', async () => {
     await getLoginPage().enterInvalidUsernameOrPassword(testEmail);
 });
 
-Then('I should see an error message indicating {string}', async (errorMessage: string) => {
+Then('I should see an error message indicating {string}', async function (this: CucumberWorld, errorMessage: string) {
     await getLoginPage().verifyInvalidLoginErrorMessage(errorMessage);
+    const screenshot = await ScreenshotUtils.takeScreenshot(pageFixture.page, 'failed-login-error-message');
+    await this.attach(screenshot, 'image/png');
 }); 

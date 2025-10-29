@@ -77,11 +77,11 @@ Before(async function() {
 
 // After hook: Runs after each scenario
 After(async function({pickle, result}) {
-    // Check if we should capture screenshots based on test result and environment settings
+    // Only capture screenshots for FAILED tests in After hook
+    // Successful test screenshots should be taken at the step level for proper placement
     const shouldCaptureForFailed = result?.status === Status.FAILED && process.env.CAPTURE_SCREENSHOTS_ON_FAIL !== 'false';
-    const shouldCaptureForPassed = result?.status === Status.PASSED && process.env.CAPTURE_SCREENSHOTS_ON_PASS === 'true';
     
-    if((shouldCaptureForFailed || shouldCaptureForPassed) && pageFixture.page) {
+    if(shouldCaptureForFailed && pageFixture.page) {
         try {
             // Create screenshots directory if it doesn't exist
             const fs = require('fs');
@@ -90,10 +90,9 @@ After(async function({pickle, result}) {
                 fs.mkdirSync(screenshotDir, { recursive: true });
             }
 
-            const status = result?.status === Status.FAILED ? 'FAILED' : 'PASSED';
             const timestamp = Date.now();
             const scenarioName = pickle.name.replace(/[^a-z0-9]/gi, '_');
-            const screenshotPath = `${screenshotDir}/${scenarioName}-${status}-${timestamp}.png`;
+            const screenshotPath = `${screenshotDir}/${scenarioName}-FAILED-${timestamp}.png`;
             
             const image = await pageFixture.page.screenshot({
                 path: screenshotPath,
@@ -103,12 +102,10 @@ After(async function({pickle, result}) {
             
             // Attach screenshot to cucumber report
             await this.attach(image, 'image/png');
-            console.log(`${status} screenshot saved: ${screenshotPath}`);
+            console.log(`FAILED screenshot saved: ${screenshotPath}`);
         } catch (error) {
             console.error('Failed to capture screenshot:', error);
         }
-    } else if(!pageFixture.page && (shouldCaptureForFailed || shouldCaptureForPassed)) {
-        console.error("pageFixture.page is undefined - cannot capture screenshot");
     }
     
     // Clean up browser resources
