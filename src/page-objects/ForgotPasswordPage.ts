@@ -1,6 +1,5 @@
 import {expect, type Locator, type Page} from '@playwright/test';
 import { BasePage } from './base/BasePage';
-import { pageFixture } from '../step-definitions/hooks/browserContextFixture';
 
 export class ForgotPasswordPage extends BasePage {
     readonly forgotPasswordPageHeader: Locator;
