@@ -12,7 +12,7 @@ try {
     require('ts-node/register');
     require('./src/utils/generate-report.ts');
     console.log('✅ HTML Report generated successfully!');
-    console.log('📊 Report location: ./reports/cucumber-html-reports/index.html');
+    console.log('📊 Report location: ./reports/./reports/cucumber-html-multi-reports/index.html');
     console.log('🌐 Open the report in your browser to view results');
 } catch (error) {
     console.error('❌ Failed to generate HTML report:', error);

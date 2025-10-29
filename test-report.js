@@ -30,7 +30,7 @@ try {
     // Try to generate the report
     require('./src/utils/generate-report.ts');
     console.log('✅ Report generation test successful!');
-    console.log('📊 Report location: ./reports/cucumber-html-reports/index.html');
+    console.log('📊 Report location: ./reports/./reports/cucumber-html-multi-reports/index.html');
     
 } catch (error) {
     console.error('❌ Report generation test failed:', error.message);

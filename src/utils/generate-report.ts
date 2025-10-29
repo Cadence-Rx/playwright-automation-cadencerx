@@ -79,7 +79,7 @@ const testSummary = getTestSummary();
 // Generate the HTML report
 report.generate({
     jsonDir: './reports',
-    reportPath: './reports/cucumber-html-reports',
+    reportPath: './reports/cucumber-html-multi-reports',
     openReportInBrowser: false,
     reportName: 'Cadence RX Automation Report',
     pageTitle: 'Cadence RX Test Results',

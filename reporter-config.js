@@ -6,7 +6,7 @@
 module.exports = {
     // Basic configuration
     jsonDir: './reports',
-    reportPath: './reports/cucumber-html-reports',
+    reportPath: './reports/./reports/cucumber-html-multi-reports',
     
     // Report settings
     openReportInBrowser: false,

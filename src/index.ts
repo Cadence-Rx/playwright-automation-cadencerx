@@ -53,7 +53,7 @@ exec(command, { encoding: 'utf-8'}, (error: Error | null, stdout: string) =>{
   try {
     require('./utils/generate-report');
     console.log('✅ HTML Report generated successfully!');
-    console.log('📊 Report location: ./reports/cucumber-html-reports/index.html');
+    console.log('📊 Report location: ./reports/./reports/cucumber-html-multi-reports/index.html');
   } catch (reportError) {
     console.error('❌ Failed to generate HTML report:', reportError);
   }
