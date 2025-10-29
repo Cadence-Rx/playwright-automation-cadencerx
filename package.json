@@ -21,7 +21,11 @@
   "scripts": {
     "cucumberTest": "cucumber-js src/features/**/*.feature --require-module ts-node/register --require src/step-definitions/**/*.ts --require src/utils/cucumber-timeouts.ts",
     "loginTest": "cucumber-js src/features/*.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts --require src/utils/cucumber-timeout.ts --tags @login",
-    "precucumber": "rimraf reports && mkdir reports && mkdir reports\\screenshots",
-    "cucumber": "npx cucumber-js && ts-node ./src/index.ts"
+    "precucumber": "rimraf reports && mkdir reports && mkdir reports\\screenshots && mkdir reports\\cucumber-html-reports",
+    "cucumber": "npx cucumber-js && ts-node ./src/index.ts",
+    "generate-report": "ts-node -e \"require('./src/utils/generate-report.ts')\"",
+    "generate-report-js": "node generate-report.js",
+    "test:with-report": "npm run precucumber && npm run cucumber && npm run generate-report",
+    "open-report": "start ./reports/cucumber-html-reports/index.html"
   }
 }

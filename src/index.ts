@@ -48,9 +48,19 @@ exec(command, { encoding: 'utf-8'}, (error: Error | null, stdout: string) =>{
   //Log the output of the command
   console.log(stdout);
 
-//check if there was an error during execution
-if(error) {
-  //throw a new error with a simple message
-  throw new Error('⚠️ 💥 Some automation test(s) have failed! - Please review. ⚠️ 💥\n' + error)
-}
+  // Generate the HTML report regardless of test results
+  console.log('\n🎯 Generating HTML Report...');
+  try {
+    require('./utils/generate-report');
+    console.log('✅ HTML Report generated successfully!');
+    console.log('📊 Report location: ./reports/cucumber-html-reports/index.html');
+  } catch (reportError) {
+    console.error('❌ Failed to generate HTML report:', reportError);
+  }
+
+  //check if there was an error during execution
+  if(error) {
+    //throw a new error with a simple message
+    throw new Error('⚠️ 💥 Some automation test(s) have failed! - Please review. ⚠️ 💥\n' + error)
+  }
 });
