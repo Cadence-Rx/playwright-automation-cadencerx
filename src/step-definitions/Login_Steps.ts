@@ -15,7 +15,16 @@ Given('I navigate to the Opus application', async () => {
 
 When('I enter a valid username {string} and password {string}', async (email: string, pwd: string) => {
     await getLoginPage().enterUsername(email);
-    await getLoginPage().enterPassword(pwd);
+    await getLoginPage().enterPassword();
+});
+
+And('I enter with valid credentials', async () => {
+    await getLoginPage().enterUsername('TRENT_LINVILLE@PMAGROUP.COM');
+    await getLoginPage().enterPassword();
+});
+
+And('I obtain member id from Authorization tab of the OPUS Dashboard', async () => {
+
 });
 
 And('I click on the login button', async function (this: CucumberWorld) {   

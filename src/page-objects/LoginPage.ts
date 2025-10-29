@@ -31,7 +31,7 @@ export class LoginPage extends BasePage {
         await this.usernameInput.fill(username);
     }
 
-    public async enterPassword(password: string): Promise<void> {
+    public async enterPassword(): Promise<void> {
         let today: Date = new Date();
         // let dateString: string = today.getDate().toString().padStart(2, '0');
         let dateString: string = today.toDateString();
