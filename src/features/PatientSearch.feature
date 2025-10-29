@@ -6,6 +6,7 @@ Feature: Opus Patient Search Functionality
         And I enter with valid credentials
         And I click on the login button
         Then I should be successfully logged in and navigated to the Authorization tab of the OPUS Dashboard
+        And I select "Member ID" from the Column chooser dropdown
         And I obtain member id from Authorization tab of the OPUS Dashboard
 
     @smoke
