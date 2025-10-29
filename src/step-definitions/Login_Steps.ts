@@ -23,9 +23,6 @@ And('I enter with valid credentials', async () => {
     await getLoginPage().enterPassword();
 });
 
-And('I obtain member id from Authorization tab of the OPUS Dashboard', async () => {
-
-});
 
 And('I click on the login button', async function (this: CucumberWorld) {   
     await this.loginPage.clickLoginButton();
