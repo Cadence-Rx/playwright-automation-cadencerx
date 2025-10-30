@@ -20,13 +20,17 @@ Then('I should be successfully logged in and navigated to the Authorization tab 
     await this.attach(screenshot, 'image/png');
 });
 
-
+And('I click the All Tab on the OPUS Dashboard', async () => {
+    await getAuthorizationTabOpusDashboardPage().clickAllTab();
+});
 
 And('I select {string} from the Column chooser dropdown', async (columnName: string) => {
     await getAuthorizationTabOpusDashboardPage().clickColumnButton();
     await getAuthorizationTabOpusDashboardPage().selectFromColumnDowndown(columnName); 
 });
 
-And('I obtain member id from Authorization tab of the OPUS Dashboard', async () => {
-
+And('I obtain member id from Authorization tab of the OPUS Dashboard', async function (this: CucumberWorld) {
+    const memberID = await getAuthorizationTabOpusDashboardPage().getMemberIDFromAuthorizationTab();
+    console.log(`Member ID obtained in step definition: ${memberID}`);
+    this.setMemberID(memberID);
 }); 
