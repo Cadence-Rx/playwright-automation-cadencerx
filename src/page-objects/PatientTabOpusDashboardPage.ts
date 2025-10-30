@@ -5,12 +5,14 @@ export class PatientTabOpusDashboardPage extends BasePage {
   readonly patientTab: Locator;
   readonly inputPatientSearch: Locator;
   readonly viewPatientButton: Locator;
+  readonly lstMemberIDs: Locator;
 
     constructor(page: Page) {
         super();
         this.patientTab = page.locator("a[href='#patient-details']");
         this.inputPatientSearch = page.locator("input#searchPatientsGrid_searchbar");
         this.viewPatientButton = page.locator("a[href*='Patient']");
+        this.lstMemberIDs = page.locator("#searchPatientsGrid_content_table tbody tr td.e-rowcell");
     }
 
     public async clickPatientTab(): Promise<void> {
@@ -29,4 +31,8 @@ export class PatientTabOpusDashboardPage extends BasePage {
         await this.viewPatientButton.click();
     }
 
+    public async verifyPatientListContainsMemberID(expectedMemberID: string): Promise<void> {
+        const actualMemberIDs = await this.lstMemberIDs.nth(1).innerText();
+        expect(actualMemberIDs).toEqual(expectedMemberID);
+    }
  }      

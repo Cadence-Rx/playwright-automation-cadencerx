@@ -15,8 +15,12 @@ Feature: Opus Patient Search Functionality
     Scenario: User should be able to search for a patient by name
         When I click on the Patient tab of the OPUS Dashboard
         And I enter Member ID obtained in the search field
-        And I click on the view Patient button
-    #     Then I should see a list of patients matching the name 'John Doe'
+        Then I should see a list of patients with matching Member ID
+        When I click on the view Patient button
+        And I switch to the new browser tab
+        Then I am redirected to the PA Request Summary page with the Patient Demographics tab active
+        
+        
 
     # Scenario: User should be able to search for a patient by ID
     #     When I navigate to the Patient Search page
