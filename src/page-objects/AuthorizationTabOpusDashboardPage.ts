@@ -32,6 +32,6 @@ export class AuthorizationTabOpusDashboardPage extends BasePage {
     }
 
     public async selectFromColumnDowndown(columnName: string): Promise<void> {
-       await this.chooseColumnOptions.selectOption({ label: columnName });
+       await this.chooseColumnOptions.filter({ hasText: columnName }).first().click();
     }
 }
