@@ -18,8 +18,8 @@ When('I enter a valid username {string} and password {string}', async (email: st
     await getLoginPage().enterPassword();
 });
 
-And('I enter with valid credentials', async () => {
-    await getLoginPage().enterUsername('TRENT_LINVILLE@PMAGROUP.COM');
+And('I enter with valid credentials for {string} user', async (email: string) => {
+    await getLoginPage().enterUsername(email);
     await getLoginPage().enterPassword();
 });
 

@@ -3,12 +3,12 @@ Feature: Opus Patient Search Functionality
 
     Background:
         Given I navigate to the Opus application
-        And I enter with valid credentials
+        And I enter with valid credentials for "TRENT_LINVILLE@PMAGROUP.COM" user
         And I click on the login button
         Then I should be successfully logged in and navigated to the Authorization tab of the OPUS Dashboard
         And I click the All Tab on the OPUS Dashboard
         And I select "Member ID" from the Column chooser dropdown
-        When I pause playwright test for debugging
+        # When I pause playwright test for debugging
         And I obtain member id from Authorization tab of the OPUS Dashboard
 
     @smoke
