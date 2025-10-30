@@ -29,7 +29,7 @@ And('I select {string} from the Column chooser dropdown', async (columnName: str
     await getAuthorizationTabOpusDashboardPage().selectFromColumnDowndown(columnName); 
 });
 
-And('I obtain member id from Authorization tab of the OPUS Dashboard', async function (this: CucumberWorld) {
+And('I obtain Member ID from Authorization tab of the OPUS Dashboard', async function (this: CucumberWorld) {
     const memberID = await getAuthorizationTabOpusDashboardPage().getMemberIDFromAuthorizationTab();
     console.log(`Member ID obtained in step definition: ${memberID}`);
     this.setMemberID(memberID);

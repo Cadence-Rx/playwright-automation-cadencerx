@@ -9,13 +9,13 @@ Feature: Opus Patient Search Functionality
         And I click the All Tab on the OPUS Dashboard
         And I select "Member ID" from the Column chooser dropdown
         # When I pause playwright test for debugging
-        And I obtain member id from Authorization tab of the OPUS Dashboard
+        And I obtain Member ID from Authorization tab of the OPUS Dashboard
 
     @smoke
     Scenario: User should be able to search for a patient by name
         When I click on the Patient tab of the OPUS Dashboard
-    #     And I enter the patient's name 'John Doe' in the search field
-    #     And I click on the search button
+        And I enter Member ID obtained in the search field
+        And I click on the view Patient button
     #     Then I should see a list of patients matching the name 'John Doe'
 
     # Scenario: User should be able to search for a patient by ID
