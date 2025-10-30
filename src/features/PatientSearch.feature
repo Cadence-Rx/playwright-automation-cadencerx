@@ -8,7 +8,6 @@ Feature: Opus Patient Search Functionality
         Then I should be successfully logged in and navigated to the Authorization tab of the OPUS Dashboard
         And I click the All Tab on the OPUS Dashboard
         And I select "Member ID" from the Column chooser dropdown
-        # When I pause playwright test for debugging
         And I obtain Member ID from Authorization tab of the OPUS Dashboard
 
     @smoke
@@ -18,6 +17,7 @@ Feature: Opus Patient Search Functionality
         Then I should see a list of patients with matching Member ID
         When I click on the view Patient button
         And I switch to the new browser tab
+        When I pause playwright test for debugging
         Then I am redirected to the PA Request Summary page with the Patient Demographics tab active
         
         
