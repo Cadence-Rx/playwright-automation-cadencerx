@@ -56,6 +56,12 @@ export class BasePage {
 
         //ensure the newly assigned tab is fully maximized
         await this.page.setViewportSize({ width: config.width, height: config.height });
-        }
+
+         //wait for network to be idle
+        await this.page.waitForLoadState('networkidle');
+
+    }
+
+        
 
 }
