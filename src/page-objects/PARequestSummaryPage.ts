@@ -12,9 +12,8 @@ export class PARequestSummaryPage extends BasePage {
   }
 
   async verifyMemberIDOnPARequestSummaryPage(expectedMemberID: string) {
-    await this.page.waitForTimeout(5000);
-    // Wait for the specific element to be present and visible
-    // await this.patientMemberID.waitFor({ state: 'visible', timeout: 30000 });
+    // await this.page.waitForTimeout(5000);
+    await this.patientMemberID.waitFor({ state: 'visible', timeout: 30000 });
     await expect(this.patientMemberID, 'Member ID is visible!').toBeVisible({ timeout: 30000 }); 
     
     const rawMemberID = await this.patientMemberID.innerText();

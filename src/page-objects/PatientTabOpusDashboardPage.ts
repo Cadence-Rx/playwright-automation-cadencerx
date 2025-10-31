@@ -17,7 +17,8 @@ export class PatientTabOpusDashboardPage extends BasePage {
 
     public async clickPatientTab(): Promise<void> {
         await this.patientTab.waitFor({ state: "visible", timeout: 30000 });
-        await this.patientTab.click();
+        // await this.patientTab.evaluate(el => el.removeAttribute('target'));
+        await this.patientTab.click({ force: true });
     }
 
     public async typePatientInfoInSearchFieldAndHitEnter(patientInfo: string): Promise<void> {
