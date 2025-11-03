@@ -39,6 +39,7 @@ export class LoginPage extends BasePage {
 
         let month: string = dateString.split(' ')[1];
         let day: string = dateString.split(' ')[2];
+        let dayFormatted: string = day.padStart(2, '0');
         let dynamicPassword: string = `Cinnadust${month}${day}@Anthony`;
         console.log(`Dynamic Password: ${dynamicPassword}`);
         
