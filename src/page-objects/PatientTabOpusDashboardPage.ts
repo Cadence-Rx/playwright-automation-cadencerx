@@ -17,7 +17,6 @@ export class PatientTabOpusDashboardPage extends BasePage {
 
     public async clickPatientTab(): Promise<void> {
         await this.patientTab.waitFor({ state: "visible", timeout: 30000 });
-        // await this.patientTab.evaluate(el => el.removeAttribute('target'));
         await this.patientTab.click({ force: true });
     }
 
@@ -29,11 +28,12 @@ export class PatientTabOpusDashboardPage extends BasePage {
     
     public async clickViewPatientButton(): Promise<void> {
         await this.viewPatientButton.waitFor({ state: "visible", timeout: 30000 });
+        await this.viewPatientButton.evaluate(el => el.removeAttribute('target'));
         await this.viewPatientButton.click();
     }
 
     public async verifyPatientListContainsMemberID(expectedMemberID: string): Promise<void> {
         const actualMemberIDs = await this.lstMemberIDs.nth(1).innerText();
-        expect(actualMemberIDs).toEqual(expectedMemberID);
+        await expect(actualMemberIDs).toEqual(expectedMemberID);
     }
  }      

@@ -16,8 +16,6 @@ Feature: Opus Patient Search Functionality
         And I enter Member ID obtained in the search field
         Then I should see a list of patients with matching Member ID
         When I click on the view Patient button
-        And I switch to the new browser tab
-        # When I pause playwright test for debugging
         Then I am redirected to the PA Request Summary page with the Patient Demographics tab active
         
         
