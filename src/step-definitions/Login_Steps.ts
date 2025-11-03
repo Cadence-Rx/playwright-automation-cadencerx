@@ -3,7 +3,6 @@ import { pageFixture } from './hooks/browserContextFixture';
 import { LoginPage } from '../page-objects/LoginPage';
 import { CucumberWorld } from './world/CucumberWorld';
 import { faker } from '@faker-js/faker';
-import { error } from 'console';
 import { ScreenshotUtils } from '../utils/screenshot-utils';
 
 // Getter function to create LoginPage instance when needed
