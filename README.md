@@ -75,7 +75,7 @@ npm install or yarn install
 8. Report set up can be found under `./utils/generate-report.ts`
 
 > [!IMPORTANT]
-> 🧠 Brains of the project can be found under index.ts
+> 🧠 Brains of the project can be found under index.ts. 
 > This is where you can add tags to commands, set up retry logic, parallelization, reporting and more! 
 
 
