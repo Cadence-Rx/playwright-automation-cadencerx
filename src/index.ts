@@ -30,6 +30,7 @@ const profiles: ProfileCommands = {
     regression: `${common} --tags "@regression"`,
     login: `${common} --tags "@login"`,
     contactUs: `${common} --tags "@contact-us"`,
+    patient: `${common} --tags "@patient"`,
 }
 
 //Get the third command-line argument and assign it to the profile
@@ -38,7 +39,7 @@ const profile = process.argv[2];
 
 //Construct the command string based on the selected profile
 //command is the full command to run the tests for the selected profile
-let command = `npx cucumber-js ${profiles[profile as 'smoke' | 'regression' | 'login' | 'contact-us']}`;
+let command = `npx cucumber-js ${profiles[profile as 'smoke' | 'regression' | 'login' | 'contact-us' | 'patient']}`;
 
 //Print the constructed command
 //console.log(command);

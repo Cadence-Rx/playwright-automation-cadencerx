@@ -31,7 +31,7 @@ export class LoginPage extends BasePage {
         await this.usernameInput.fill(username);
     }
 
-    public async enterPassword(password: string): Promise<void> {
+    public async enterPassword(): Promise<void> {
         let today: Date = new Date();
         // let dateString: string = today.getDate().toString().padStart(2, '0');
         let dateString: string = today.toDateString();
@@ -39,6 +39,7 @@ export class LoginPage extends BasePage {
 
         let month: string = dateString.split(' ')[1];
         let day: string = dateString.split(' ')[2];
+        let dayFormatted: string = day.padStart(2, '0');
         let dynamicPassword: string = `Cinnadust${month}${day}@Anthony`;
         console.log(`Dynamic Password: ${dynamicPassword}`);
         
