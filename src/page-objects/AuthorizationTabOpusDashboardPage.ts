@@ -12,8 +12,8 @@ export class AuthorizationTabOpusDashboardPage extends BasePage {
   constructor(page: Page) {
     super();
     this.authorizationTab = page.locator("a[href='#transaction-details']");
-    this.myAuthorizationTab = page.locator("a.btn.btn-white.border.btn-sm.authRefreshButton.authRefreshButtonMy");
-    this.allTab = page.locator("a.btn.btn-white.border.btn-sm.authRefreshButton.authRefreshButtonAll");
+    this.myAuthorizationTab = page.locator("a.btn.btn-primary.btn-sm.authRefreshButton.authRefreshButtonMy, a.btn.btn-white.border.btn-sm.authRefreshButton.authRefreshButtonMy");
+    this.allTab = page.locator("a.btn.btn-white.border.btn-sm.authRefreshButton.authRefreshButtonAll, a.btn.btn-primary.btn-sm.authRefreshButton.authRefreshButtonAll");
     this.columnButton = page.locator("button#priorAuthGrid_columnchooser");
     this.lstColumnOptions = page.locator("span.e-label");
     this.lstMemberIDs = page.locator("td.e-rowcell");

@@ -14,7 +14,7 @@ const getAuthorizationTabOpusDashboardPage = () => new AuthorizationTabOpusDashb
 Then('I should be successfully logged in and navigated to the Authorization tab of the OPUS Dashboard', async function (this: CucumberWorld) {
     await getLoginPage().verifyLoginSuccess();
     await getAuthorizationTabOpusDashboardPage().verifyAuthorizationTab();
-    // await getAuthorizationTabOpusDashboardPage().verifyMyAuthorizationTab();
+    await getAuthorizationTabOpusDashboardPage().verifyMyAuthorizationTab();
     // Take screenshot at the step level (not in After hook)
     const screenshot = await ScreenshotUtils.takeScreenshot(pageFixture.page, 'successful-login-authorization-tab');
     await this.attach(screenshot, 'image/png');
