@@ -22,8 +22,9 @@ export class PatientNotesPage extends BasePage {
     }
 
     public async clickAddNoteButton(): Promise<void> {
+        await this.page.waitForTimeout(2000); 
         await this.addNoteButton.waitFor({ state: "visible", timeout: 30000 });
-        await this.addNoteButton.click({ force: true });
+        await this.addNoteButton.click();
     }
 
     public async enterNoteText(note: string): Promise<void> {
