@@ -10,7 +10,7 @@ Feature: Opus Add Patient Note Functionality
     @smoke
     Scenario: User should be able to add a note to a patient's profile
         When I click on a random PA Request status button on the Authorization tab of the OPUS Dashboard
-        Then Then I am redirected to the PA "Request Summary" page for that Pending Authorization
+        Then I am redirected to the PA "Request Summary" page for that Pending Authorization
         When I click on the Patient Notes tab
         And I click on the Add Note button
         And I enter a note in the note text area "Entering a test note for automation"
