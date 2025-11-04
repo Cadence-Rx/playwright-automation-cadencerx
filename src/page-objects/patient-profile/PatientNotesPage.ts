@@ -11,8 +11,7 @@ export class PatientNotesPage extends BasePage {
     constructor(page: Page) {
         super();
         this.patientNotesTab = page.locator("a[href='#notes']").first();
-        this.addNoteButton = page.locator("button##addNotesAction");
-        // this.addNoteButton = page.locator("//*[@id='#addNotesAction']");
+        this.addNoteButton = page.locator("//*[@id='#addNotesAction']");
         this.noteTextArea = page.locator("textarea[name='Note']");
         this.saveNoteButton = page.locator("button#saveNotesButton");
     }
@@ -23,14 +22,16 @@ export class PatientNotesPage extends BasePage {
     }
 
     public async clickAddNoteButton(): Promise<void> {
-        await this.addNoteButton.click();
+        await this.addNoteButton.waitFor({ state: "visible", timeout: 30000 });
+        await this.addNoteButton.click({ force: true });
     }
 
     public async enterNoteText(note: string): Promise<void> {
+        await this.noteTextArea.waitFor({ state: "visible", timeout: 30000 });
         await this.noteTextArea.fill(note);
     }
 
     public async clickSaveNoteButton(): Promise<void> {
-        await this.saveNoteButton.click();
+        await this.saveNoteButton.click({ force: true });
     }   
 } 

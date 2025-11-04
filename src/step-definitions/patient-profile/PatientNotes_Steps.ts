@@ -13,7 +13,7 @@ And('I click on the Add Note button', async () => {
     await getPatientNotesPage().clickAddNoteButton();
 });
 
-And('I enter a note in the note text area', async (note: string) => {
+And('I enter a note in the note text area {string}', async (note: string) => {
     await getPatientNotesPage().enterNoteText(note);
 });
 
