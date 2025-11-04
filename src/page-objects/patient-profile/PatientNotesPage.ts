@@ -29,4 +29,8 @@ export class PatientNotesPage extends BasePage {
     public async enterNoteText(note: string): Promise<void> {
         await this.noteTextArea.fill(note);
     }
+
+    public async clickSaveNoteButton(): Promise<void> {
+        await this.saveNoteButton.click();
+    }   
 } 
