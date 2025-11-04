@@ -1,6 +1,5 @@
 import { expect, type Locator, type Page } from "@playwright/test";
 import { BasePage } from "./base/BasePage";
-import { el } from "@faker-js/faker/.";
 
 export class AuthorizationTabOpusDashboardPage extends BasePage {
   readonly authorizationTab: Locator;
