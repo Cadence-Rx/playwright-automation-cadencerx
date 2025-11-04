@@ -84,7 +84,6 @@ export class AuthorizationTabOpusDashboardPage extends BasePage {
   }
 
   public async clickRandomPARequestStatusBtn(): Promise<void> {
-    // const count = await this.lstPARequestStatusBtn.count();
     await this.lstPARequestStatusBtn.last().waitFor({ state: "visible", timeout: 30000 });
     // const randomIndex = Math.floor(Math.random() * 10);
     const randomIndex = Math.floor(Math.random() * await this.lstPARequestStatusBtn.count());
