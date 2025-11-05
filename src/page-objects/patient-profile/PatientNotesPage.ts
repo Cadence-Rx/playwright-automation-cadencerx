@@ -39,7 +39,8 @@ export class PatientNotesPage extends BasePage {
     }   
 
     public async verifyNewlyAddedNoteIsVisible(expectedNote: string): Promise<void> {
-        await this.lstNoteDescription.last().waitFor({ state: "visible", timeout: 30000 });
+        await this.page.waitForTimeout(1000); 
+        await this.waitForVisible(this.lstNoteDescription.last());
         const actualNoteText = await this.lstNoteDescription.first().innerText();
         await expect(actualNoteText).toEqual(expectedNote);
     }
