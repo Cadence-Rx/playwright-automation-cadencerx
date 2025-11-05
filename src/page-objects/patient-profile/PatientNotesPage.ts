@@ -33,7 +33,7 @@ export class PatientNotesPage extends BasePage {
         await this.noteTextArea.waitFor({ state: "visible", timeout: 30000 });
         await this.noteTextArea.fill(note);
     }
-
+    
     public async clickSaveNoteButton(): Promise<void> {
         await this.saveNoteButton.click({ force: true });
     }   
