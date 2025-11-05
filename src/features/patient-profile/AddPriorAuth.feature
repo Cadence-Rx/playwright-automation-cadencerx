@@ -3,7 +3,7 @@ Feature: Opus Add Prior Authorization Functionality
 
     Background:
         Given I navigate to the Opus application
-        And I enter with valid credentials for "RENT_LINVILLE@PMAGROUP.COM" user
+        And I enter with valid credentials for "TRENT_LINVILLE@PMAGROUP.COM" user
         And I click on the login button
         And I click the All Tab on the OPUS Dashboard
 
