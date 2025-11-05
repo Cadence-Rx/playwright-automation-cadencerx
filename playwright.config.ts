@@ -28,6 +28,10 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
+    /* Set default timeout for all waitFor operations */
+    // actionTimeout: 30000, // 30 seconds for actions like click, fill, etc.
+    // navigationTimeout: 30000, // 30 seconds for page navigations
+    
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },

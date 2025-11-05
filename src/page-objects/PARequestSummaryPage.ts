@@ -14,9 +14,8 @@ export class PARequestSummaryPage extends BasePage {
   }
 
   async verifyMemberIDOnPARequestSummaryPage(expectedMemberID: string) {
-    // await this.page.waitForTimeout(5000);
-    await this.patientMemberID.waitFor({ state: 'visible', timeout: 30000 });
-    await expect(this.patientMemberID, 'Member ID is visible!').toBeVisible({ timeout: 30000 }); 
+    await this.waitForVisible(this.patientMemberID);
+    await expect(this.patientMemberID, 'Member ID is visible!').toBeVisible(); 
     
     const rawMemberID = await this.patientMemberID.innerText();
     let actualMemberID = rawMemberID.split('ID')[1].trim();
@@ -25,12 +24,12 @@ export class PARequestSummaryPage extends BasePage {
   }
 
   async verifyPatientTabDemographicsTabIsActive() {
-    await expect(this.patientTabDemographics, 'Patient Demographics tab is visible!').toBeVisible({ timeout: 30000 });
+    await this.waitForVisible(this.patientTabDemographics);
     await expect(this.patientTabDemographics).toHaveClass(/active/);
   }
 
   async verifyPARequestSummaryHeader(summaryText: string) {
-    await this.paRequestSummaryHeader.waitFor({ state: 'visible', timeout: 30000 });
+    await this.waitForVisible(this.paRequestSummaryHeader);
     await expect(this.paRequestSummaryHeader).toHaveText(summaryText);
   }
 }
