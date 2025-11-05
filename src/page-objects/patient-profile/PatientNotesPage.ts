@@ -7,6 +7,7 @@ export class PatientNotesPage extends BasePage {
     readonly addNoteButton: Locator;
     readonly noteTextArea: Locator;
     readonly saveNoteButton: Locator;
+    readonly lstNoteDescription: Locator;
 
     constructor(page: Page) {
         super();
@@ -14,6 +15,7 @@ export class PatientNotesPage extends BasePage {
         this.addNoteButton = page.locator("//*[@id='#addNotesAction']");
         this.noteTextArea = page.locator("textarea[name='Note']");
         this.saveNoteButton = page.locator("button#saveNotesButton");
+        this.lstNoteDescription = page.locator("div.note-description.text-break");
     }
 
     public async clickPatientNotesTab(): Promise<void> {
@@ -35,4 +37,10 @@ export class PatientNotesPage extends BasePage {
     public async clickSaveNoteButton(): Promise<void> {
         await this.saveNoteButton.click({ force: true });
     }   
+
+    public async verifyNewlyAddedNoteIsVisible(expectedNote: string): Promise<void> {
+        await this.lstNoteDescription.last().waitFor({ state: "visible", timeout: 30000 });
+        const actualNoteText = await this.lstNoteDescription.first().innerText();
+        await expect(actualNoteText).toEqual(expectedNote);
+    }
 } 

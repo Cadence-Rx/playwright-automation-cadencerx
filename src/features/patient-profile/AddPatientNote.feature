@@ -15,4 +15,4 @@ Feature: Opus Add Patient Note Functionality
         And I click on the Add Note button
         And I enter a note in the note text area "Entering a test note for automation"
         And I click on the Save Note button
-        # Then I should see the newly added note in the Patient Notes tab
+        Then I should see the newly added note in the Patient Notes tab

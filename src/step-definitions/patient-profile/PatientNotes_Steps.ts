@@ -22,4 +22,5 @@ And('I click on the Save Note button', async () => {
 });
 
 Then('I should see the newly added note in the Patient Notes tab', async () => {
+    await getPatientNotesPage().verifyNewlyAddedNoteIsVisible("Entering a test note for automation");
 });

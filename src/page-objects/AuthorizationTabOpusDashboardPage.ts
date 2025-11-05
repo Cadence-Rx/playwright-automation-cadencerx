@@ -85,7 +85,6 @@ export class AuthorizationTabOpusDashboardPage extends BasePage {
 
   public async clickRandomPARequestStatusBtn(): Promise<void> {
     await this.lstPARequestStatusBtn.last().waitFor({ state: "visible", timeout: 30000 });
-    // const randomIndex = Math.floor(Math.random() * 10);
     const randomIndex = Math.floor(Math.random() * await this.lstPARequestStatusBtn.count());
     console.log(`Random PA Request Status button: ${randomIndex}`);
     await this.lstPARequestStatusBtn.nth(randomIndex).evaluate(el => el.removeAttribute('target'))
