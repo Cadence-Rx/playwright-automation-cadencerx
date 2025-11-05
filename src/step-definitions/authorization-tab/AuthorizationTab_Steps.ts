@@ -1,9 +1,9 @@
 import { defineStep as And, Given, When, Then} from '@cucumber/cucumber';
-import { pageFixture } from './hooks/browserContextFixture';  
-import { LoginPage } from '../page-objects/LoginPage';
-import { AuthorizationTabOpusDashboardPage } from '../page-objects/AuthorizationTabOpusDashboardPage';
-import { CucumberWorld } from './world/CucumberWorld';
-import { ScreenshotUtils } from '../utils/screenshot-utils';
+import { pageFixture } from '../hooks/browserContextFixture';  
+import { LoginPage } from '../../page-objects/login/LoginPage';
+import { AuthorizationTabOpusDashboardPage } from '../../page-objects/authorization-tab/AuthorizationTabOpusDashboardPage';
+import { CucumberWorld } from '../world/CucumberWorld';
+import { ScreenshotUtils } from '../../utils/screenshot-utils';
 
 //Getter function to create authorization tab instance when needed
 const getLoginPage = () => new LoginPage(pageFixture.page);

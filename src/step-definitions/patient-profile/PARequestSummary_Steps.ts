@@ -1,8 +1,8 @@
 import { defineStep as And, Given, When, Then} from '@cucumber/cucumber';
-import { pageFixture } from './hooks/browserContextFixture'; 
-import { ScreenshotUtils } from '../utils/screenshot-utils';
-import { CucumberWorld } from './world/CucumberWorld';
-import { PARequestSummaryPage } from '../page-objects/PARequestSummaryPage';
+import { pageFixture } from '../hooks/browserContextFixture'; 
+import { ScreenshotUtils } from '../../utils/screenshot-utils';
+import { CucumberWorld } from '../world/CucumberWorld';
+import { PARequestSummaryPage } from '../../page-objects/patient-profile/PARequestSummaryPage';
 
 
 const getPARequestSummaryPage = () => new PARequestSummaryPage(pageFixture.page);

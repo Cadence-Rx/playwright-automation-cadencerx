@@ -1,9 +1,9 @@
 import { defineStep as And, Given, When, Then} from '@cucumber/cucumber';
-import { pageFixture } from './hooks/browserContextFixture';  
+import { pageFixture } from '../hooks/browserContextFixture';  
 import { faker } from '@faker-js/faker';
-import { ForgotPasswordPage } from '../page-objects/ForgotPasswordPage';
-import { CucumberWorld } from './world/CucumberWorld';
-import { ScreenshotUtils } from '../utils/screenshot-utils';
+import { ForgotPasswordPage } from '../../page-objects/login/ForgotPasswordPage';
+import { CucumberWorld } from '../world/CucumberWorld';
+import { ScreenshotUtils } from '../../utils/screenshot-utils';
 
 // Getter function to create ForgotPasswordPage instance when needed
 const getForgotPasswordPage = () => new ForgotPasswordPage(pageFixture.page);

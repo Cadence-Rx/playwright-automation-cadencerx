@@ -1,5 +1,5 @@
 import { expect, type Locator, type Page } from "@playwright/test";
-import { BasePage } from "./base/BasePage";
+import { BasePage } from "../base/BasePage";
 
 export class PatientTabOpusDashboardPage extends BasePage {
   readonly patientTab: Locator;

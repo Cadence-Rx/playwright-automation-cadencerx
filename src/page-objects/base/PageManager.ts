@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { pageFixture } from "../../step-definitions/hooks/browserContextFixture";
-import { LoginPage } from "../LoginPage";
-import { AuthorizationTabOpusDashboardPage } from "../AuthorizationTabOpusDashboardPage";
-import { ForgotPasswordPage } from "../ForgotPasswordPage";
+import { LoginPage } from "../login/LoginPage";
+import { AuthorizationTabOpusDashboardPage } from "../authorization-tab/AuthorizationTabOpusDashboardPage";
+import { ForgotPasswordPage } from "../login/ForgotPasswordPage";
 
 
 export class PageManager {
