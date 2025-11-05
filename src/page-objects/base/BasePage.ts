@@ -12,8 +12,22 @@ const config = {
 };
 
 export class BasePage {
+    // Default timeout for wait operations
+    private readonly visibleTimeout = parseInt(env.parsed?.DEFAULT_TIMEOUT || '30000');  
+
     get page() {
         return pageFixture.page;
+    }
+
+    // Helper method for waiting with default timeout
+    protected async waitForVisible(locator: Locator, timeout: number = this.visibleTimeout): Promise<void> {
+        await locator.waitFor({ state: 'visible', timeout });
+    }
+
+    // Helper method for waiting and getting text with default timeout
+    protected async waitAndGetText(locator: Locator, timeout: number = this.visibleTimeout): Promise<string> {
+        await locator.waitFor({ state: 'visible', timeout });
+        return await locator.innerText();
     }
 
     //Promise<void> in TypeScript indicates that the function is asynchronous and does not return any value upon completion.

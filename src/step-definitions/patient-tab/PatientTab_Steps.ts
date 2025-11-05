@@ -1,8 +1,8 @@
 import { defineStep as And, Given, When, Then} from '@cucumber/cucumber';
-import { pageFixture } from './hooks/browserContextFixture';  
-import { PatientTabOpusDashboardPage } from '../page-objects/PatientTabOpusDashboardPage';
-import { CucumberWorld } from './world/CucumberWorld';
-import { ScreenshotUtils } from '../utils/screenshot-utils';
+import { pageFixture } from '../hooks/browserContextFixture';  
+import { PatientTabOpusDashboardPage } from '../../page-objects/patient-tab/PatientTabOpusDashboardPage';
+import { CucumberWorld } from '../world/CucumberWorld';
+import { ScreenshotUtils } from '../../utils/screenshot-utils';
 
 const getPatientTabOpusDashboardPage = () => new PatientTabOpusDashboardPage(pageFixture.page);
 

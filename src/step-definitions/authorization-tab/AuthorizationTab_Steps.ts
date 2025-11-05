@@ -1,9 +1,9 @@
 import { defineStep as And, Given, When, Then} from '@cucumber/cucumber';
-import { pageFixture } from './hooks/browserContextFixture';  
-import { LoginPage } from '../page-objects/LoginPage';
-import { AuthorizationTabOpusDashboardPage } from '../page-objects/AuthorizationTabOpusDashboardPage';
-import { CucumberWorld } from './world/CucumberWorld';
-import { ScreenshotUtils } from '../utils/screenshot-utils';
+import { pageFixture } from '../hooks/browserContextFixture';  
+import { LoginPage } from '../../page-objects/login/LoginPage';
+import { AuthorizationTabOpusDashboardPage } from '../../page-objects/authorization-tab/AuthorizationTabOpusDashboardPage';
+import { CucumberWorld } from '../world/CucumberWorld';
+import { ScreenshotUtils } from '../../utils/screenshot-utils';
 
 //Getter function to create authorization tab instance when needed
 const getLoginPage = () => new LoginPage(pageFixture.page);
@@ -34,3 +34,7 @@ And('I obtain Member ID from Authorization tab of the OPUS Dashboard', async fun
     console.log(`Member ID obtained in step definition: ${memberID}`);
     this.setMemberID(memberID);
 }); 
+
+When('I click on a random PA Request status button on the Authorization tab of the OPUS Dashboard', async () => {
+    await getAuthorizationTabOpusDashboardPage().clickRandomPARequestStatusBtn();
+});

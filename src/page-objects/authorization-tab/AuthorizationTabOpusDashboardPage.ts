@@ -1,5 +1,5 @@
 import { expect, type Locator, type Page } from "@playwright/test";
-import { BasePage } from "./base/BasePage";
+import { BasePage } from "../base/BasePage";
 
 export class AuthorizationTabOpusDashboardPage extends BasePage {
   readonly authorizationTab: Locator;
@@ -8,6 +8,7 @@ export class AuthorizationTabOpusDashboardPage extends BasePage {
   readonly columnButton: Locator;
   readonly lstColumnOptions: Locator;
   readonly lstMemberIDs: Locator;
+  readonly lstPARequestStatusBtn: Locator;
 
   constructor(page: Page) {
     super();
@@ -17,6 +18,7 @@ export class AuthorizationTabOpusDashboardPage extends BasePage {
     this.columnButton = page.locator("button#priorAuthGrid_columnchooser");
     this.lstColumnOptions = page.locator("span.e-label");
     this.lstMemberIDs = page.locator("td.e-rowcell");
+    this.lstPARequestStatusBtn = page.locator("a[href*='PriorAuthorizationRequest']") ;
   }
 
   public async verifyAuthorizationTab(): Promise<void> {
@@ -80,4 +82,13 @@ export class AuthorizationTabOpusDashboardPage extends BasePage {
     const memberIDs = await this.lstMemberIDs.nth(randomNumber).innerText();
     return memberIDs;
   }
+
+  public async clickRandomPARequestStatusBtn(): Promise<void> {
+    await this.lstPARequestStatusBtn.last().waitFor({ state: "visible", timeout: 30000 });
+    const randomIndex = Math.floor(Math.random() * await this.lstPARequestStatusBtn.count());
+    console.log(`Random PA Request Status button: ${randomIndex}`);
+    await this.lstPARequestStatusBtn.nth(randomIndex).evaluate(el => el.removeAttribute('target'))
+    await this.lstPARequestStatusBtn.nth(randomIndex).click();
+  }
+
 }

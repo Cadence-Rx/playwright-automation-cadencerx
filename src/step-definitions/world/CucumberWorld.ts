@@ -1,9 +1,9 @@
 import { World, setWorldConstructor, IWorldOptions } from "@cucumber/cucumber";
 import { PageManager } from "../../page-objects/base/PageManager";
 import { BasePage } from "../../page-objects/base/BasePage";
-import { LoginPage } from "../../page-objects/LoginPage";
-import { AuthorizationTabOpusDashboardPage } from "../../page-objects/AuthorizationTabOpusDashboardPage";
-import { ForgotPasswordPage } from "../../page-objects/ForgotPasswordPage";
+import { LoginPage } from "../../page-objects/login/LoginPage";
+import { AuthorizationTabOpusDashboardPage } from "../../page-objects/authorization-tab/AuthorizationTabOpusDashboardPage";
+import { ForgotPasswordPage } from "../../page-objects/login/ForgotPasswordPage";
 
 export class CucumberWorld extends World {
   public pageManager: PageManager;
