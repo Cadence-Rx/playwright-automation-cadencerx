@@ -14,7 +14,7 @@ And('I click on the Add Prior Auth button', async () => {
     await getPriorAuthorizationPage().clickAddPriorAuthButton();
 });
 
-And('I enter valid {number} in the search medication field', async (gpi: number) => {
+And('I enter valid {string} in the search medication field', async (gpi: string) => {
     await getPriorAuthorizationPage().enterMedicationInSearchField(gpi);
 });
 

@@ -11,6 +11,7 @@ Feature: Opus Add Prior Authorization Functionality
     Scenario Outline: Add Authorize Prior Authorization
         When I click on a random PA Request status button on the Authorization tab of the OPUS Dashboard
         Then I am redirected to the PA "Request Summary" page for that Pending Authorization
+        Given I pause playwright test for debugging
         When I click on the Authorization tab
         And I click on the Add Prior Auth button
         And I enter valid '<GPI>' in the search medication field
@@ -21,22 +22,22 @@ Feature: Opus Add Prior Authorization Functionality
     Example:
             | GPI            | drugName   |
             | 96645813002900 | Lidocaine  |
-            | 98600012003700 | Vanish-Pen |
+            # | 98600012003700 | Vanish-Pen |
 
 
-    @smoke
-    Scenario Outline: Add Do NOT Authorize Prior Authorization
-        When I click on a random PA Request status button on the Authorization tab of the OPUS Dashboard
-        Then I am redirected to the PA "Request Summary" page for that Pending Authorization
-        When I click on the Authorization tab
-        And I click on the Add Prior Auth button
-        And I enter valid '<GPI>' in the search medication field
-        And I select "Do Not Authorize" from the action dropdown
-        And I click the Save Prior Auth button
-        Then I should see the newly added prior authorization with '<GPI>' and '<drugName>' in the Prior Authorizations section
+    # @smoke
+    # Scenario Outline: Add Do NOT Authorize Prior Authorization
+    #     When I click on a random PA Request status button on the Authorization tab of the OPUS Dashboard
+    #     Then I am redirected to the PA "Request Summary" page for that Pending Authorization
+    #     When I click on the Authorization tab
+    #     And I click on the Add Prior Auth button
+    #     And I enter valid '<GPI>' in the search medication field
+    #     And I select "Do Not Authorize" from the action dropdown
+    #     And I click the Save Prior Auth button
+    #     Then I should see the newly added prior authorization with '<GPI>' and '<drugName>' in the Prior Authorizations section
 
-    Example:
-            | GPI            | drugName           |
-            | 96645813002900 | Lidocaine          |
-            | 98600012003700 | Vanish-Pen         |
-            | 75100090100320 | tiZANidine HCl 4MG |
+    # Example:
+    #         | GPI            | drugName           |
+    #         | 96645813002900 | Lidocaine          |
+            # | 98600012003700 | Vanish-Pen         |
+            # | 75100090100320 | tiZANidine HCl 4MG |

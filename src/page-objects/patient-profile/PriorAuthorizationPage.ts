@@ -8,7 +8,7 @@ export class PriorAuthorizationPage extends BasePage {
 
     constructor(page: Page) {
         super();
-        this.authorizationTab = page.locator("a#authTab.tab]").first();
+        this.authorizationTab = page.locator("a#authTab.tab").first();
         this.addPriorAuthButton = page.locator("button#createPAButton");
         this.addPriorAuthMedSearch = page.locator("input#med-search");
     }
@@ -23,8 +23,8 @@ export class PriorAuthorizationPage extends BasePage {
         await this.addPriorAuthButton.click({ force: true });
     }
 
-    public async enterMedicationInSearchField(medication: number): Promise<void> {
+    public async enterMedicationInSearchField(medication: string): Promise<void> {
         await this.waitForVisible(this.addPriorAuthMedSearch);
-        await this.addPriorAuthMedSearch.fill(medication.toString());
+        await this.addPriorAuthMedSearch.fill(medication);
     }
 }
