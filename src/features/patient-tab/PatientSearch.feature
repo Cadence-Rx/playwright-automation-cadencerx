@@ -1,4 +1,4 @@
-@patient @regression @ignore
+@patient @regression 
 Feature: Opus Patient Search Functionality
 
     Background:
