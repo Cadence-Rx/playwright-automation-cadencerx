@@ -27,6 +27,10 @@ And('I click the Save Prior Auth button', async () => {
     await getPriorAuthorizationPage().clickSavePriorAuthButton();
 });
 
+Then('the prior authorization modal displays that auth was successfully created', async () => {
+    // Implement verification logic here
+});
+
 Then('I should see the newly added prior authorization {number} and {string} in the Prior Authorizations section', async (gpi: number, drugName: string) => {
 
 });
