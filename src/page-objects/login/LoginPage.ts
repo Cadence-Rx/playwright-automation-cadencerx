@@ -73,4 +73,9 @@ export class LoginPage extends BasePage {
         await expect(this.loginErrorMessage, 'Error message is visible!').toBeVisible();
         await expect(this.loginErrorMessage).toHaveText(errorMessage);
     }
+
+    public async leaveFieldsEmpty(): Promise<void> {
+        await this.usernameInput.fill(''); 
+        await this.passwordInput.fill('');
+    }   
 }

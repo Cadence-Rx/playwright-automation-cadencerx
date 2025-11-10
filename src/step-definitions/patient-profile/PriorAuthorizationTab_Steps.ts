@@ -19,11 +19,12 @@ And('I enter valid {string} in the search medication field', async (gpi: string)
 });
 
 And('I select {string} from the action dropdown', async (action: string) => {
+    await getPriorAuthorizationPage().selectActionFromDropdown(action);
 
 });
 
 And('I click the Save Prior Auth button', async () => {
-
+    await getPriorAuthorizationPage().clickSavePriorAuthButton();
 });
 
 Then('I should see the newly added prior authorization {number} and {string} in the Prior Authorizations section', async (gpi: number, drugName: string) => {
