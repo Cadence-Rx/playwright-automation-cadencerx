@@ -17,7 +17,10 @@ Feature: Opus Add Prior Authorization Functionality
         # Given I pause playwright test for debugging
         And I select "Authorize" from the action dropdown
         And I click the Save Prior Auth button
-        # Then I should see the newly added prior authorization with '<GPI>' and '<drugName>' in the Prior Authorizations section
+        Then the prior authorization modal displays the auth was successfully created
+        When I click OK on the Add Prior Auth modal 
+        And I click on the first Auth Id in prior authorization history list
+        Then I should see the newly added prior authorization with the same '<gpi>' and '<drugName>' on the edit Prior Authorizations modal
 
     Examples:
             | gpi            | drugName   |

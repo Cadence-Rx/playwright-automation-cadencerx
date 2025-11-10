@@ -37,6 +37,7 @@ export class CucumberWorld extends World {
   private lastName?: string;
   private emailAddress?: string;
   private memberID?: string;
+  private actionSelected?: string;
 
   //{ attach, log, link, parameters}: IWorldOptions are required in constructor of your CucumberWorld class to
   //Inherit functionalities from the base World class and initialize your PageManger and BasePage.
@@ -70,6 +71,10 @@ export class CucumberWorld extends World {
     this.memberID = memberID;
   }
 
+  setActionSelected(action: string) {
+    this.actionSelected = action;
+  }
+
   //Getter methods
   getURL(): string | undefined {
     return this.url;
@@ -90,6 +95,11 @@ export class CucumberWorld extends World {
   getMemberID() {
     return this.memberID;
   }
+
+  getActionSelected() {
+    return this.actionSelected;
+  }
+  
 }
 
 //Tells Cucumber to use this custom World

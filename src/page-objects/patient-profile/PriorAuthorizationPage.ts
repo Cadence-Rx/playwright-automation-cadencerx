@@ -10,6 +10,13 @@ export class PriorAuthorizationPage extends BasePage {
     readonly lstActionItem: Locator;
     readonly saveButton: Locator;
     readonly successMessage: Locator;
+    readonly okButton: Locator;
+    readonly lstAuthIdLink: Locator;
+    readonly drugName: Locator;
+    readonly gpiLabel: Locator;
+    readonly paActionSelected: Locator;
+
+
 
     constructor(page: Page) {
         super();
@@ -21,6 +28,11 @@ export class PriorAuthorizationPage extends BasePage {
         this.lstActionItem = page.locator("li.e-list-item");
         this.saveButton = page.locator("button.btn.btn-info.bootbox-accept");
         this.successMessage = page.locator("div.messages");
+        this.okButton = page.locator("button.btn.btn-primary").filter({ hasText: 'OK' });
+        this.lstAuthIdLink = page.locator("a.authorizationEditLink");
+        this.drugName = page.locator("input.form-control.gpilabel");
+        this.gpiLabel = page.locator("label.gpi");
+        this.paActionSelected = page.locator("#editPaAction_hidden");
     }
 
     public async clickPriorAuthorizationTab(): Promise<void> {
@@ -56,5 +68,32 @@ export class PriorAuthorizationPage extends BasePage {
     public async verifySuccessMessage(expectedMessage: string): Promise<void> {
         await this.waitForVisible(this.successMessage);
         const messageText = await this.successMessage.innerText();
-        expect(messageText).toContain(expectedMessage);
+        expect(messageText).toEqual(expectedMessage);
+    }
+
+    public async clickOkOnAddPriorAuthModal(): Promise<void> {
+        // await this.waitForVisible(this.okButton);
+        await this.okButton.click({ force: true });
+    } 
+    
+    public async clickFirstAuthIdInHistoryList(): Promise<void> {
+        await this.waitForVisible(this.lstAuthIdLink.last());
+        await this.lstAuthIdLink.first().click({ force: true });
+    }
+
+    public async verifyPriorAuthorizationDetails(gpi: string, drugName: string, action: any): Promise<void> {
+        await this.waitForVisible(this.drugName);
+        const actualDrugName = await this.drugName.inputValue();
+        expect(actualDrugName).toContain(drugName);
+
+        // await this.waitForVisible(this.gpiLabel);
+        const actualGpi = await this.gpiLabel.innerText();
+        expect(actualGpi).toEqual(gpi);
+
+        // await this.waitForVisible(this.paActionSelected);
+        const actionSelected = await this.paActionSelected.inputValue();
+        expect(actionSelected).toEqual(action);
+    }
+
+
 }
