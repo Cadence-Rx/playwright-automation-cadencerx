@@ -11,16 +11,16 @@ Feature: Opus Add Prior Authorization Functionality
     Scenario Outline: Add Authorize Prior Authorization
         When I click on a random PA Request status button on the Authorization tab of the OPUS Dashboard
         Then I am redirected to the PA "Request Summary" page for that Pending Authorization
-        # Given I pause playwright test for debugging
         When I click on the Authorization tab
         And I click on the Add Prior Auth button
-        And I enter valid '<GPI>' in the search medication field
+        And I enter valid '<gpi>' in the search medication field
+        # Given I pause playwright test for debugging
         And I select "Authorize" from the action dropdown
         And I click the Save Prior Auth button
         # Then I should see the newly added prior authorization with '<GPI>' and '<drugName>' in the Prior Authorizations section
 
-    Example:
-            | GPI            | drugName   |
+    Examples:
+            | gpi            | drugName   |
             | 96645813002900 | Lidocaine  |
             # | 98600012003700 | Vanish-Pen |
 

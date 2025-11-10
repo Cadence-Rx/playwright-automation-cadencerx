@@ -25,6 +25,7 @@ export class PriorAuthorizationPage extends BasePage {
     }
 
     public async clickAddPriorAuthButton(): Promise<void> {
+        await this.addPriorAuthButton.scrollIntoViewIfNeeded();
         await this.waitForVisible(this.addPriorAuthButton);
         await this.addPriorAuthButton.click({ force: true });
     }
@@ -35,8 +36,9 @@ export class PriorAuthorizationPage extends BasePage {
     }
 
     public async selectActionFromDropdown(action: string): Promise<void> {
+        await this.page.waitForTimeout(1000); 
         await this.waitForVisible(this.actionDropDown);
-        await this.actionDropDown.click();
+        await this.actionDropDown.click({ force: true });
         await this.lstActionItem.filter({ hasText: action }).first().click();
         // await this.actionDropDown.selectOption({ label: action });
     }
