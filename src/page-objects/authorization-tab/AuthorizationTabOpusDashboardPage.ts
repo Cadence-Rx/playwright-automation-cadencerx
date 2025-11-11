@@ -9,6 +9,7 @@ export class AuthorizationTabOpusDashboardPage extends BasePage {
   readonly lstColumnOptions: Locator;
   readonly lstMemberIDs: Locator;
   readonly lstPARequestStatusBtn: Locator;
+  readonly lstPagination: Locator;
 
   constructor(page: Page) {
     super();
@@ -18,7 +19,8 @@ export class AuthorizationTabOpusDashboardPage extends BasePage {
     this.columnButton = page.locator("button#priorAuthGrid_columnchooser");
     this.lstColumnOptions = page.locator("span.e-label");
     this.lstMemberIDs = page.locator("td.e-rowcell");
-    this.lstPARequestStatusBtn = page.locator("a[href*='PriorAuthorizationRequest']") ;
+    this.lstPARequestStatusBtn = page.locator("a[href*='PriorAuthorizationRequest']");
+    this.lstPagination = page.locator("a.e-link.e-numericitem.e-spacing.e-pager-default");
   }
 
   public async verifyAuthorizationTab(): Promise<void> {
@@ -84,9 +86,15 @@ export class AuthorizationTabOpusDashboardPage extends BasePage {
   }
 
   public async clickRandomPARequestStatusBtn(): Promise<void> {
+    await this.lstPagination.last().waitFor({ state: "visible", timeout: 30000 });
+    const randomPageIndex = Math.floor(Math.random() * await this.lstPagination.count());
+    console.log(`Random pagination button: ${randomPageIndex}`);
+    await this.lstPagination.nth(randomPageIndex).click();
+
     await this.lstPARequestStatusBtn.last().waitFor({ state: "visible", timeout: 30000 });
     const randomIndex = Math.floor(Math.random() * await this.lstPARequestStatusBtn.count());
     console.log(`Random PA Request Status button: ${randomIndex}`);
+    await this.page.waitForTimeout(1000);
     await this.lstPARequestStatusBtn.nth(randomIndex).evaluate(el => el.removeAttribute('target'))
     await this.lstPARequestStatusBtn.nth(randomIndex).click();
   }

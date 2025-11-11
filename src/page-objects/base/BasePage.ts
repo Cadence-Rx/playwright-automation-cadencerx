@@ -30,6 +30,36 @@ export class BasePage {
         return await locator.innerText();
     }
 
+    // Helper method to ensure element is clickable before clicking
+    protected async waitForClickable(locator: Locator, timeout: number = this.visibleTimeout): Promise<void> {
+        await locator.waitFor({ state: 'visible', timeout });
+        await locator.waitFor({ state: 'attached', timeout });
+    }
+
+    // Safe click method that waits for element to be clickable
+    protected async safeClick(locator: Locator, timeout: number = this.visibleTimeout): Promise<void> {
+        await this.waitForClickable(locator, timeout);
+        await locator.click();
+    }
+
+    // Force click method for stubborn elements
+    protected async forceClick(locator: Locator, timeout: number = this.visibleTimeout): Promise<void> {
+        await this.waitForClickable(locator, timeout);
+        await locator.click({ force: true });
+    }
+
+    // Check if element is clickable (returns boolean)
+    protected async isClickable(locator: Locator): Promise<boolean> {
+        try {
+            await locator.waitFor({ state: 'visible', timeout: 5000 });
+            const isEnabled = await locator.isEnabled();
+            const isVisible = await locator.isVisible();
+            return isEnabled && isVisible;
+        } catch {
+            return false;
+        }
+    }
+
     //Promise<void> in TypeScript indicates that the function is asynchronous and does not return any value upon completion.
     public async navigateToURL(url: string): Promise<void> {
         await this.page.goto(url);
