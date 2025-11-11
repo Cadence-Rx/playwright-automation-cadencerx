@@ -24,7 +24,6 @@ Feature: Opus Add Prior Authorization Functionality
         Examples:
             | gpi            | drugName  |
             | 96645813002900 | Lidocaine |
-            # | 98600012003700 | Vanish-Pen |
 
 
 
@@ -43,5 +42,5 @@ Feature: Opus Add Prior Authorization Functionality
         Then I should see the newly added prior authorization with the same '<gpi>' and '<drugName>' on the edit Prior Authorizations modal
 
         Examples:
-            | gpi            | drugName           |
-            | 75100090100320 | Tizanidine HCl 4MG |
+            | gpi            | drugName   |
+            | 75100090100320 | Tizanidine |
