@@ -2,6 +2,7 @@ import { defineStep as And, Given, When, Then} from '@cucumber/cucumber';
 import { pageFixture } from './../hooks/browserContextFixture';
 import { PriorAuthorizationPage } from '../../page-objects/patient-profile/PriorAuthorizationPage';
 import { CucumberWorld } from '../world/CucumberWorld';
+import { ScreenshotUtils } from '../../utils/screenshot-utils';
 
 
 const getPriorAuthorizationPage = () =>  new PriorAuthorizationPage(pageFixture.page);
@@ -27,8 +28,10 @@ And('I click the Save Prior Auth button', async () => {
     await getPriorAuthorizationPage().clickSavePriorAuthButton();
 });
 
-Then('the prior authorization modal displays the auth was successfully created', async () => {
+Then('the prior authorization modal displays the auth was successfully created', async function (this: CucumberWorld) {
     await getPriorAuthorizationPage().verifySuccessMessage('Success');
+    const screenshot = await ScreenshotUtils.takeScreenshot(pageFixture.page, 'prior-authorization-success-message');
+    await this.attach(screenshot, 'image/png');
 });
 
 
@@ -43,4 +46,6 @@ And ('I click on the first Auth Id in prior authorization history list', async (
 Then('I should see the newly added prior authorization with the same {string} and {string} on the edit Prior Authorizations modal', async function (this: CucumberWorld, gpi: string, drugName: string) {
     const actionSelected = this.getActionSelected();
     await getPriorAuthorizationPage().verifyPriorAuthorizationDetails(gpi, drugName, actionSelected);
+    const screenshot = await ScreenshotUtils.takeScreenshot(pageFixture.page, 'prior-authorization-details');
+    await this.attach(screenshot, 'image/png');
 });
