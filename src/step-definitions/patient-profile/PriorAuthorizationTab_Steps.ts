@@ -6,7 +6,6 @@ import { CucumberWorld } from '../world/CucumberWorld';
 
 const getPriorAuthorizationPage = () =>  new PriorAuthorizationPage(pageFixture.page);
 
-
 When('I click on the Authorization tab', async () => {
     await getPriorAuthorizationPage().clickPriorAuthorizationTab();
 });

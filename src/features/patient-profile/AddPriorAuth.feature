@@ -14,9 +14,9 @@ Feature: Opus Add Prior Authorization Functionality
         When I click on the Authorization tab
         And I click on the Add Prior Auth button
         And I enter valid '<gpi>' in the search medication field
-        # Given I pause playwright test for debugging
         And I select "Authorize" from the action dropdown
         And I click the Save Prior Auth button
+        Given I pause playwright test for debugging
         Then the prior authorization modal displays the auth was successfully created
         When I click OK on the Add Prior Auth modal 
         And I click on the first Auth Id in prior authorization history list

@@ -47,7 +47,7 @@ export class PriorAuthorizationPage extends BasePage {
     }
 
     public async enterMedicationInSearchField(medication: string): Promise<void> {
-        await this.addPriorAuthModal.isEnabled();
+        await this.addPriorAuthModal.isVisible();
         await this.waitForVisible(this.addPriorAuthMedSearch);
         await this.addPriorAuthMedSearch.fill(medication);
     }
