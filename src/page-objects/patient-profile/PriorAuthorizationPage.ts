@@ -21,14 +21,14 @@ export class PriorAuthorizationPage extends BasePage {
     constructor(page: Page) {
         super();
         this.authorizationTab = page.locator("a#authTab.tab").first();
-        this.addPriorAuthButton = page.locator("button#createPAButton");
+        this.addPriorAuthButton = page.locator("button#createPAButton i");
         this.addPriorAuthModal = page.locator("div.modal-header.ui-draggable-handle");
         this.addPriorAuthMedSearch = page.locator("input#med-search");
         this.actionDropDown = page.locator("#addPaActions");
         this.lstActionItem = page.locator("li.e-list-item");
         this.saveButton = page.locator("button.btn.btn-info.bootbox-accept");
         this.successMessage = page.locator("div.messages");
-        this.okButton = page.locator("button.btn.btn-primary").filter({ hasText: 'OK' });
+        this.okButton = page.locator("button.btn").filter({ hasText: 'OK' });
         this.lstAuthIdLink = page.locator("a.authorizationEditLink");
         this.drugName = page.locator("input.form-control.gpilabel");
         this.gpiLabel = page.locator("label.gpi");
@@ -41,8 +41,10 @@ export class PriorAuthorizationPage extends BasePage {
     }
 
     public async clickAddPriorAuthButton(): Promise<void> {
-        await this.addPriorAuthButton.scrollIntoViewIfNeeded();
-        await this.waitForVisible(this.addPriorAuthButton);
+        await this.page.waitForTimeout(3000);
+        // await this.addPriorAuthButton.scrollIntoViewIfNeeded();
+        // await this.waitForVisible(this.addPriorAuthButton);
+        await this.waitForClickable(this.addPriorAuthButton);
         await this.addPriorAuthButton.click({ force: true });
     }
 
