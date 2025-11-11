@@ -36,14 +36,17 @@ export class PriorAuthorizationPage extends BasePage {
     }
 
     public async clickPriorAuthorizationTab(): Promise<void> {
+        //scroll to the bottom of the page to make the Authorization tab visible
+        await this.page.evaluate(() => {
+            window.scrollTo(0, document.body.scrollHeight);
+        });
         await this.waitForVisible(this.authorizationTab);
         await this.authorizationTab.click({ force: true });
     }
 
     public async clickAddPriorAuthButton(): Promise<void> {
         await this.page.waitForTimeout(3000);
-        // await this.addPriorAuthButton.scrollIntoViewIfNeeded();
-        // await this.waitForVisible(this.addPriorAuthButton);
+        await this.waitForVisible(this.addPriorAuthButton);
         await this.waitForClickable(this.addPriorAuthButton);
         await this.addPriorAuthButton.click({ force: true });
     }
@@ -52,14 +55,16 @@ export class PriorAuthorizationPage extends BasePage {
         await this.addPriorAuthModal.isVisible();
         await this.waitForVisible(this.addPriorAuthMedSearch);
         await this.addPriorAuthMedSearch.fill(medication);
+        await this.page.waitForTimeout(1000);
+        await this.addPriorAuthMedSearch.pressSequentially(' ')
     }
 
     public async selectActionFromDropdown(action: string): Promise<void> {
         await this.page.waitForTimeout(1000); 
         await this.waitForVisible(this.actionDropDown);
         await this.actionDropDown.click({ force: true });
+        await this.page.waitForTimeout(1000);
         await this.lstActionItem.filter({ hasText: action }).first().click();
-        // await this.actionDropDown.selectOption({ label: action });
     }
 
     public async clickSavePriorAuthButton(): Promise<void> {    
