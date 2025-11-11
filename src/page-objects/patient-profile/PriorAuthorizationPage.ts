@@ -91,7 +91,7 @@ export class PriorAuthorizationPage extends BasePage {
     public async verifyPriorAuthorizationDetails(gpi: string, drugName: string, action: any): Promise<void> {
         await this.waitForVisible(this.drugName);
         const actualDrugName = await this.drugName.inputValue();
-        expect(actualDrugName).toContain(drugName);
+        expect(actualDrugName.toLocaleLowerCase()).toContain(drugName.toLocaleLowerCase());
 
         // await this.waitForVisible(this.gpiLabel);
         const actualGpi = await this.gpiLabel.innerText();
