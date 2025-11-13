@@ -1,9 +1,9 @@
 name: Mirror All Branches to Azure DevOps
 
 on:
-  push:  # Trigger on any push to any branch
+  push:
     branches:
-      - '**'  # Matches all branches
+      - '**' # Matches all branches
 
 jobs:
   sync-to-azure:
@@ -13,20 +13,16 @@ jobs:
       - name: Checkout GitHub Repo
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Important: fetch all history and branches
+          fetch-depth: 0
 
       - name: Set up Git
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-      - name: Add Azure DevOps Remote
-        run: |
-          git remote add azure https://cadencerx@dev.azure.com/cadencerx/Harbour/_git/playwright-automation-cadencerx
-          git fetch --all
-
       - name: Push All Branches and Tags to Azure DevOps
         env:
           AZURE_PAT: ${{ secrets.AZURE_PAT }}
         run: |
-          git push --mirror https://cadencerx:$AZURE_PAT@dev.azure.com/cadencerx/Harbour/_git/playwright-automation-cadencerx
+          git remote add azure https://cadencerx:${AZURE_PAT}@dev.azure.com/cadencerx/Harbour/_git/playwright-automation-cadencerx
+          git push --mirror azure
