@@ -1,4 +1,4 @@
-import { After, AfterAll, Before, BeforeAll, BeforeStep, Status } from "@cucumber/cucumber";
+import { After, AfterAll, AfterStep, Before, BeforeAll, BeforeStep, Status } from "@cucumber/cucumber";
 import {Browser, chromium, BrowserType, firefox, webkit} from "@playwright/test";
 import { pageFixture } from "./browserContextFixture";
 import { setGlobalTimeouts } from "../../utils/playwright-timeouts";
@@ -77,8 +77,23 @@ Before(async function() {
 
 // After hook: Runs after each scenario
 After(async function({pickle, result}) {
-    // Only capture screenshots for FAILED tests in After hook
-    // Successful test screenshots should be taken at the step level for proper placement
+    // Screenshots are now captured in AfterStep hook for failed steps
+    // This After hook only handles browser cleanup
+    
+    // Clean up browser resources
+    if(browserInstance) {
+        try {
+            await pageFixture.page?.close();
+            await browserInstance.close();
+            browserInstance = null;
+        } catch (error) {
+            console.error('Error closing browser:', error);
+        }
+    }
+});
+
+// AfterStep hook: Captures screenshot immediately when a step fails
+AfterStep(async function(this: any, {pickle, pickleStep, result}: any) {
     const shouldCaptureForFailed = result?.status === Status.FAILED && process.env.CAPTURE_SCREENSHOTS_ON_FAIL !== 'false';
     
     if(shouldCaptureForFailed && pageFixture.page) {
@@ -92,7 +107,8 @@ After(async function({pickle, result}) {
 
             const timestamp = Date.now();
             const scenarioName = pickle.name.replace(/[^a-z0-9]/gi, '_');
-            const screenshotPath = `${screenshotDir}/${scenarioName}-FAILED-${timestamp}.png`;
+            const stepName = pickleStep.text.replace(/[^a-z0-9]/gi, '_').substring(0, 50);
+            const screenshotPath = `${screenshotDir}/${scenarioName}-${stepName}-FAILED-${timestamp}.png`;
             
             const image = await pageFixture.page.screenshot({
                 path: screenshotPath,
@@ -100,22 +116,12 @@ After(async function({pickle, result}) {
                 fullPage: true // Capture full page, not just viewport
             });
             
-            // Attach screenshot to cucumber report
+            // Attach screenshot to cucumber report - this will attach to the failing step
             await this.attach(image, 'image/png');
-            console.log(`FAILED screenshot saved: ${screenshotPath}`);
+            console.log(`FAILED step screenshot saved: ${screenshotPath}`);
+            console.log(`Failed step: ${pickleStep.text}`);
         } catch (error) {
-            console.error('Failed to capture screenshot:', error);
-        }
-    }
-    
-    // Clean up browser resources
-    if(browserInstance) {
-        try {
-            await pageFixture.page?.close();
-            await browserInstance.close();
-            browserInstance = null;
-        } catch (error) {
-            console.error('Error closing browser:', error);
+            console.error('Failed to capture step screenshot:', error);
         }
     }
 });
