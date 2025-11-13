@@ -25,8 +25,6 @@ Feature: Opus Add Prior Authorization Functionality
             | gpi            | drugName  |
             | 96645813002900 | Lidocaine |
 
-
-
     @smoke
     Scenario Outline: Add Authorize Prior Authorization
         When I click on a random PA Request status button on the Authorization tab of the OPUS Dashboard
