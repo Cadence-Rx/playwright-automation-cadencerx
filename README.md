@@ -38,6 +38,7 @@ yarn config set strict-ssl false
 yarn global add typescript
 npm install -g ts-node --force
 npm install or yarn install
+npx playwright install
 ```
 
 ### VSCode setup
