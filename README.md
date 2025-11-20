@@ -54,8 +54,8 @@ npx playwright install
      ```json
       "cucumberautocomplete.strictGherkinCompletion": true,
        "cucumberautocomplete.steps": [
-           "cypress/support/step_definitions/*.ts",
-           "cypress/support/step_definitions/*.js",
+           "cypress/support/step_definitions/**/*.ts",
+           "cypress/support/step_definitions/**/*.js",
            "src/step-definitions/**/*.ts",
            "src/step-definitions/**/*.js"
        ],
