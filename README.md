@@ -16,17 +16,16 @@ https://github.com/cucumber/cucumber-expressions#readme
 1. install 24.0.2 version Windows zip
 2. Create "Java JDK" folder under Program files (x86)
    - Need admin access to your machine
-   _ testing
 3. Unzip file in download folder
 4. Drag and drop unzipped directory in "Java JDK" folder
 5. Set system envronment variables
-  - need admin access
-  - create  new system variabel `JAVA_HOME`
-  - copy jdk directory location
-  - <img width="598" height="174" alt="image" src="https://github.com/user-attachments/assets/95874aa1-5951-4814-ae31-25cb23e12155" />
-  - Add Java JDK top you path: %JAVA_HOME%\bin
-  - <img width="844" height="893" alt="image" src="https://github.com/user-attachments/assets/e56b6f5a-2666-4538-a610-94ce7536821b" />
-  - Open new git bash window and verify java version `java -version`
+     - need admin access
+     - create  new system variabel `JAVA_HOME`
+     - copy jdk directory location
+     - <img width="598" height="174" alt="image" src="https://github.com/user-attachments/assets/95874aa1-5951-4814-ae31-25cb23e12155" />
+     - Add Java JDK top you path: %JAVA_HOME%\bin
+     - <img width="844" height="893" alt="image" src="https://github.com/user-attachments/assets/e56b6f5a-2666-4538-a610-94ce7536821b" />
+     - Open new git bash window and verify java version `java -version`
 
 ### install yarn
 ```
