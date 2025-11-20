@@ -42,23 +42,23 @@ npm install or yarn install
 
 ### VSCode setup
 1. Install plugins
-  - GitHub copilot and chata
-  - Cucumber (Gherkin) Full support
-  - Prettier - Code Formatter
-  - Materical Icon Theme
-  - **Crtl+Shift+P** reload windows
+     - GitHub copilot and chata
+     - Cucumber (Gherkin) Full support
+     - Prettier - Code Formatter
+     - Materical Icon Theme
+     - **Crtl+Shift+P** reload windows
 2. Cucumber Configuration
-  - File -> Preferences -> Settings -> Extensions -> Cucumber Auto Complete settings -> Eddit in `setting.json`
-  - Add the following
-  ```json
-   "cucumberautocomplete.strictGherkinCompletion": true,
-    "cucumberautocomplete.steps": [
-        "cypress/support/step_definitions/*.ts",
-        "cypress/support/step_definitions/*.js",
-        "src/step-definitions/**/*.ts",
-        "src/step-definitions/**/*.js"
-    ],
-  ```
+     - File -> Preferences -> Settings -> Extensions -> Cucumber Auto Complete settings -> Eddit in `setting.json`
+     - Add the following
+     ```json
+      "cucumberautocomplete.strictGherkinCompletion": true,
+       "cucumberautocomplete.steps": [
+           "cypress/support/step_definitions/*.ts",
+           "cypress/support/step_definitions/*.js",
+           "src/step-definitions/**/*.ts",
+           "src/step-definitions/**/*.js"
+       ],
+     ```
 
 ### Reporting
 1. Download cucumber-json-formatter-windows-amd64 from https://github.com/cucumber/json-formatter#readme
