@@ -15,7 +15,7 @@
 ### Install Java JDK
 1. install 24.0.2 version Windows zip
 2. Create "Java JDK" folder under Program files (x86)
-   - Need admin access to your machine
+   - ⚠️ Need admin access to your machine
 3. Unzip file in download folder
 4. Drag and drop unzipped directory in "Java JDK" folder
 5. Set system envronment variables
