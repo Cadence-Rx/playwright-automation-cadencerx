@@ -1,9 +1,9 @@
 # playwright-automation-cadencerx
 
 ## Useful links
-https://playwright.dev/docs/intro 
-https://cucumber.io/
-https://github.com/cucumber/cucumber-expressions#readme 
+- https://playwright.dev/docs/intro 
+- https://cucumber.io/
+- https://github.com/cucumber/cucumber-expressions#readme 
 
 
 ## Installation
