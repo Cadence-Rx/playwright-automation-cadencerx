@@ -18,7 +18,7 @@
    - ⚠️ Need admin access to your machine
 3. Unzip file in download folder
 4. Drag and drop unzipped directory in "Java JDK" folder
-5. Set system envronment variables
+5. Set system environment variables  
      - need admin access
      - create  new system variabel `JAVA_HOME`
      - copy jdk directory location
@@ -43,10 +43,10 @@ npx playwright install
 
 ### VSCode setup
 1. Install plugins
-     - GitHub copilot and chata
+     - GitHub copilot and chat
      - Cucumber (Gherkin) Full support
      - Prettier - Code Formatter
-     - Materical Icon Theme
+     - Material Icon Theme
      - **Crtl+Shift+P** reload windows
 2. Cucumber Configuration
      - File -> Preferences -> Settings -> Extensions -> Cucumber Auto Complete settings -> Eddit in `setting.json`
