@@ -7,6 +7,13 @@
 
 
 ## Installation
+### Install git bash
+1. Download and install git bash
+2. https://git-scm.com/install/windows 
+3. https://git-scm.com/cheat-sheet
+4. ⚠️ When installing git be sure to install under the following directory `C:\Program Files\Git`
+   - Need admin access to your machine 
+   
 ### Install Node 20 or higher
 1. Download and install Node.js
 2. https://nodejs.org/en/download/
