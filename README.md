@@ -56,7 +56,7 @@ npx playwright install
      - Material Icon Theme
      - **Crtl+Shift+P** reload windows
 2. Cucumber Configuration
-     - File -> Preferences -> Settings -> Extensions -> Cucumber Auto Complete settings -> Eddit in `setting.json`
+     - File -> Preferences -> Settings -> Extensions -> Cucumber Auto Complete settings -> Edit in `setting.json`
      - Add the following
      ```json
       "cucumberautocomplete.strictGherkinCompletion": true,
@@ -83,7 +83,10 @@ npx playwright install
 
 > [!IMPORTANT]
 > 🧠 Brains of the project can be found under index.ts. 
-> This is where you can add tags to commands, set up retry logic, parallelization, reporting and more! 
+> This is where you can add tags to commands, set up retry logic, parallelization, reporting and more!
+
+### Running Scripts
+`yarn run cucumber <tagName>`
 
 
   
