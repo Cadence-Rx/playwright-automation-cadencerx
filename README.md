@@ -82,8 +82,8 @@ npx playwright install
 8. Report set up can be found under `./utils/generate-report.ts`
 
 > [!IMPORTANT]
-> 🧠 Brains of the project can be found under index.ts. 
-> This is where you can add tags to commands, set up retry logic, parallelization, reporting and more!
+> 🧠 The brains of the project is located in `index.ts`. 
+> Here, you can configure commands commands tags e.g. `@smoke`, implement retry logic, configure parallelization, reporting and more!
 
 ### Running Scripts
 `yarn run cucumber <tagName>`
