@@ -75,7 +75,7 @@ npx playwright install
 4. Set Path in system environment variables
 5. <img width="482" height="532" alt="image" src="https://github.com/user-attachments/assets/c25752be-4f2a-4489-a033-ade71346df68" />
 > [!CAUTION]
-> Don't forgot to add back slash in the end
+> 🚨 Don't forgot to add back slash in the end
 
 6. Close and reopen VSCode
 7. Verify you can run the following: `cucumber-json-formatter --help`
@@ -84,6 +84,10 @@ npx playwright install
 > [!IMPORTANT]
 > 🧠 The brains of the project is located in `index.ts`. 
 > Here, you can configure commands commands tags e.g. `@smoke`, implement retry logic, configure parallelization, reporting and more!
+
+> [!WARNING]
+> ⚠️ When crating new tagas do NOT forget to include in the `index.ts` file and the `generate-report.ts`
+> The tag name needs to be included in the `generate-report.ts` for tag ran to show up on the report. 
 
 ### Running Scripts
 `yarn run cucumber <tagName>`
