@@ -92,6 +92,13 @@ npx playwright install
 ### Running Scripts
 `yarn run cucumber <tagName>`
 
+### Adding Additinal Tag Instructions   
+1. Inlcude new tags under `index.ts` in the following places. 
+   - `const profiles: ProfileCommands`
+   - `let commands`
+2. Include new tag under `generate-report.ts` in the following place
+   - `const tagPatterns`
+
 
   
 
