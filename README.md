@@ -34,13 +34,13 @@
      - <img width="844" height="893" alt="image" src="https://github.com/user-attachments/assets/e56b6f5a-2666-4538-a610-94ce7536821b" />
      - Open new git bash window and verify java version `java -version`
 
-### install yarn
+### Install yarn
 ```
 npm install -g yarn@latest
 yarn config set strict-ssl false
 ```
 
-### install Playwright and Typescript
+### Install Playwright and Typescript
 ```
 yarn global add typescript
 npm install -g ts-node --force
@@ -98,6 +98,11 @@ npx playwright install
    - `let commands`
 2. Include new tag under `generate-report.ts` in the following place
    - `const tagPatterns`
+  
+### Updating Browsers 
+1. update browser will be typical for all
+   - `npx playwright install firefox`
+2. Avaiable browsers in playwright can be found in `playwright.config.ts`
 
 
   
