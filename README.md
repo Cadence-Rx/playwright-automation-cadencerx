@@ -20,7 +20,7 @@
 3. `node -v`
 
 ### Install Java JDK
-1. install 24.0.2 version Windows zip
+1. Install 24.0.2 version Windows zip
 2. Create "Java JDK" folder under Program files (x86)
    - ⚠️ Need admin access to your machine
 3. Unzip file in download folder
@@ -99,10 +99,18 @@ npx playwright install
 2. Include new tag under `generate-report.ts` in the following place
    - `const tagPatterns`
   
-### Updating Browsers 
-1. update browser will be typical for all
-   - `npx playwright install firefox`
-2. Avaiable browsers in playwright can be found in `playwright.config.ts`
+### Updating Playwright Browsers Binaries 
+Playwright downloads its own browser binaries for automation. To update browser binaries, follow the below instructions.
+1. Update the Playwright library
+   - `yarn add -D @playwright/test@latest`
+2. Install the updated browser binaries 
+   - `npx playwright install`
+4. Install only specific browsers (e.g., just Chromium and Firefox)
+   - `npx playwright install chromium firefox`
+6. Install all browsers and their OS dependencies
+   - `npx playwright install --with-deps`
+> [!REMINDER]
+> 📌 Available browsers in playwright can be found under `playwright.config.ts`
 
 
   
