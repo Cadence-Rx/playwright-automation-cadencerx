@@ -109,7 +109,7 @@ Playwright downloads its own browser binaries for automation. To update browser 
    - `npx playwright install chromium firefox`
 6. Install all browsers and their OS dependencies
    - `npx playwright install --with-deps`
-> [!REMINDER]
+> [!TIP]
 > 📌 Available browsers in playwright can be found under `playwright.config.ts`
 
 
