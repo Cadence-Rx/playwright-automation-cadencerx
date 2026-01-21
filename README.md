@@ -86,8 +86,10 @@ npx playwright install
 > Here, you can configure commands commands tags e.g. `@smoke`, implement retry logic, configure parallelization, reporting and more!
 
 > [!WARNING]
-> ⚠️ When crating new tagas do NOT forget to include in the `index.ts` file and the `generate-report.ts`
-> The tag name needs to be included in the `generate-report.ts` for tag ran to show up on the report. 
+> ⚠️ When creating new tagas do NOT forget to include in the `index.ts` file and the `generate-report.ts`
+> The tag name needs to be included in the `generate-report.ts` for tag ran to show up on the report.
+>
+> 💡 The `BasePage.ts` class provide a shared foundation for all page ojbects in the automation framework.  Its primary purpose is to centralize common browser and elemente interactions, envorce consistent behaviro, and reduce duplicate code across page models.  
 
 ### Running Scripts
 `yarn run cucumber <tagName>`
@@ -111,6 +113,8 @@ Playwright downloads its own browser binaries for automation. To update browser 
    - `npx playwright install --with-deps`
 > [!TIP]
 > 📌 Available browsers in playwright can be found under `playwright.config.ts`
+
+### BasePage.ts
 
 
   
