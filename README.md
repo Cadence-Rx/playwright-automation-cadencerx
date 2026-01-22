@@ -54,6 +54,7 @@ npx playwright install
      - Cucumber (Gherkin) Full support
      - Prettier - Code Formatter
      - Material Icon Theme
+     - Git History by Don Jayamanne
      - **Crtl+Shift+P** reload windows
 2. Cucumber Configuration
      - File -> Preferences -> Settings -> Extensions -> Cucumber Auto Complete settings -> Edit in `setting.json`
