@@ -85,6 +85,12 @@ npx playwright install
 > [!IMPORTANT]
 > 🧠 The brains of the project is located in `index.ts`. 
 > Here, you can configure commands commands tags e.g. `@smoke`, implement retry logic, configure parallelization, reporting and more!
+>
+> ### **Cucumber World Explanation**
+> The Cucumber World is a shared context ojbect that does the following: 
+> 1. Maintains States Between Steps: Stores data that needs to presist across different step definition within a scenario aka Setters and Getters
+> 2. Provides Browser Context: Manages Playwright page instaces and browser sessions
+> 3. Handles Test Setup?Teardown: Manages browser lifecycle and test environment 
 
 > [!WARNING]
 > ⚠️ When creating new tagas do NOT forget to include in the `index.ts` file and the `generate-report.ts`
