@@ -123,6 +123,25 @@ Playwright downloads its own browser binaries for automation. To update browser 
 
 ### BasePage.ts
 
+### Playwright Healer README.file
+Command Differences: See HEALER_SETUP and HEALER_INTEGRATION_COMPLETE_GUIDE for further information
+Command 1: npm run healer:heal:uat regression
+What it does:
+1. ✅ Runs tests tagged with @regression
+2. 🔧 Identifies failing tests
+3. 🛠️ Applies automatic fixes where possible
+4. 📊 Shows you what was fixed
+5. 🛑 Stops there - doesn't verify if fixes worked
+
+
+Command 2: npm run healer:heal:uat regression -- --verify
+What it does:
+1. ✅ Everything from Command 1, PLUS:
+2. 🔄 Phase 2: Re-runs the same tests after applying fixes
+3. 📈 Calculates healing success rate
+4. ✅ Confirms which fixes actually worked
+5. 🎯 Shows final results
+
 
   
 
